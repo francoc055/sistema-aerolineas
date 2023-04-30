@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Franco\\Desktop\\Castañeda.Franco.PrimerParcial\\vistaWf\\vistaWf.csproj",
-      "projectName": "vistaWf",
-      "projectPath": "C:\\Users\\Franco\\Desktop\\Castañeda.Franco.PrimerParcial\\vistaWf\\vistaWf.csproj",
+      "projectUniqueName": "C:\\Users\\Franco\\Desktop\\Castañeda.Franco.PrimerParcial\\vistaWf\\vistaLogin.csproj",
+      "projectName": "vistaLogin",
+      "projectPath": "C:\\Users\\Franco\\Desktop\\Castañeda.Franco.PrimerParcial\\vistaWf\\vistaLogin.csproj",
       "packagesPath": "C:\\Users\\Franco\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Franco\\Desktop\\Castañeda.Franco.PrimerParcial\\vistaWf\\obj\\",
       "projectStyle": "PackageReference",
