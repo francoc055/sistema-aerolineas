@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "HhaWMfMRWeyfIFvaEhvw3zhyAn84fXqui+zBbfRmBDSDP339BXv2fMcr7Y+XYLB87rNGu2+ZaB4AAjH8ADZVjA==",
+  "dgSpecHash": "yUku/ht0cE7XSmZsLoCKjjm2x7Rw47+U+zZMUAkWH+JQ+vB34PUhGjkSNfBxumLEwEI8ofVcn61nsue4/xydlw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Franco\\Desktop\\Castañeda.Franco.PrimerParcial\\vistaWf\\vistaLogin.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Franco\\Desktop\\Castañeda.Franco.PrimerParcial\\vistaWf\\Vista.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Franco\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

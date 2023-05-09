@@ -1,0 +1,122 @@
+[
+  {
+    "EligeComida": true,
+    "EligeInternet": false,
+    "TipoClase": 1,
+    "EnVuelo": true,
+    "Nombre": "pepe",
+    "Apellido": "peres",
+    "Dni": 40256873,
+    "Edad": 24,
+    "Equipo": 1,
+    "PesoValija": 15
+  },
+  {
+    "EligeComida": false,
+    "EligeInternet": true,
+    "TipoClase": 1,
+    "EnVuelo": true,
+    "Nombre": "lolo",
+    "Apellido": "gonzales",
+    "Dni": 434250983,
+    "Edad": 23,
+    "Equipo": 0,
+    "PesoValija": 0
+  },
+  {
+    "EligeComida": true,
+    "EligeInternet": true,
+    "TipoClase": 0,
+    "EnVuelo": true,
+    "Nombre": "juan",
+    "Apellido": "rodriguez",
+    "Dni": 42250432,
+    "Edad": 22,
+    "Equipo": 0,
+    "PesoValija": 0
+  },
+  {
+    "EligeComida": false,
+    "EligeInternet": false,
+    "TipoClase": 0,
+    "EnVuelo": true,
+    "Nombre": "thomas",
+    "Apellido": "alvares",
+    "Dni": 443243983,
+    "Edad": 26,
+    "Equipo": 1,
+    "PesoValija": 9
+  },
+  {
+    "EligeComida": true,
+    "EligeInternet": false,
+    "TipoClase": 1,
+    "EnVuelo": true,
+    "Nombre": "franco",
+    "Apellido": "sanchez",
+    "Dni": 38870983,
+    "Edad": 30,
+    "Equipo": 1,
+    "PesoValija": 11
+  },
+  {
+    "EligeComida": false,
+    "EligeInternet": false,
+    "TipoClase": 1,
+    "EnVuelo": false,
+    "Nombre": "lucia",
+    "Apellido": "melgar",
+    "Dni": 18870983,
+    "Edad": 33,
+    "Equipo": 1,
+    "PesoValija": 11
+  },
+  {
+    "EligeComida": true,
+    "EligeInternet": false,
+    "TipoClase": 1,
+    "EnVuelo": false,
+    "Nombre": "rocio",
+    "Apellido": "pardi",
+    "Dni": 48870983,
+    "Edad": 33,
+    "Equipo": 0,
+    "PesoValija": 0
+  },
+  {
+    "EligeComida": false,
+    "EligeInternet": true,
+    "TipoClase": 1,
+    "EnVuelo": false,
+    "Nombre": "camila",
+    "Apellido": "sarvi",
+    "Dni": 18870983,
+    "Edad": 50,
+    "Equipo": 1,
+    "PesoValija": 11
+  },
+  {
+    "EligeComida": true,
+    "EligeInternet": true,
+    "TipoClase": 1,
+    "EnVuelo": false,
+    "Nombre": "marco",
+    "Apellido": "miller",
+    "Dni": 31870983,
+    "Edad": 35,
+    "Equipo": 0,
+    "PesoValija": 0
+  },
+  {
+    "EligeComida": true,
+    "EligeInternet": false,
+    "TipoClase": 1,
+    "EnVuelo": false,
+    "Nombre": "nicolas",
+    "Apellido": "hardy",
+    "Dni": 33870983,
+    "Edad": 47,
+    "Equipo": 0,
+    "PesoValija": 0
+  }
+]

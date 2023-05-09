@@ -1,0 +1,140 @@
+[
+  {
+    "IdVuelo": 1,
+    "CiudadDePartida": "Iguazu",
+    "CiudadDestino": "Salta",
+    "FechaDeVuelo": "2023-04-30T00:00:00",
+    "Avion": {
+      "Matricula": "CG5HA5BC",
+      "CantidadDeAsientos": 30,
+      "CantidadDeBanios": 2,
+      "ServicioDeInternet": false,
+      "OfreceComida": true,
+      "CapacidadBodega": 100
+    },
+    "Clase1": 1,
+    "ListaPasajeros": [],
+    "CantidadAsientoClasePremium": 6,
+    "CantidadAsientoClaseTurista": 24,
+    "PesoValija": 18,
+    "DuracionDelVuelo": 3.1533911,
+    "CostoTurista": 161.785300,
+    "CostoPremium": 218.41015500,
+    "CostoClase": 161.785300
+  },
+  {
+    "IdVuelo": 2,
+    "CiudadDePartida": "Tucuman",
+    "CiudadDestino": "Neuquen",
+    "FechaDeVuelo": "2023-05-30T00:00:00",
+    "Avion": {
+      "Matricula": "CG5HA5BC",
+      "CantidadDeAsientos": 30,
+      "CantidadDeBanios": 2,
+      "ServicioDeInternet": false,
+      "OfreceComida": true,
+      "CapacidadBodega": 100
+    },
+    "Clase1": 0,
+    "ListaPasajeros": [],
+    "CantidadAsientoClasePremium": 6,
+    "CantidadAsientoClaseTurista": 24,
+    "PesoValija": 12,
+    "DuracionDelVuelo": 2.8202925,
+    "CostoTurista": 197.429650,
+    "CostoPremium": 266.53002750,
+    "CostoClase": 266.53002750
+  },
+  {
+    "IdVuelo": 3,
+    "CiudadDePartida": "Neuquen",
+    "CiudadDestino": "Cordoba",
+    "FechaDeVuelo": "2023-06-30T00:00:00",
+    "Avion": {
+      "Matricula": "DF3HG4AA",
+      "CantidadDeAsientos": 45,
+      "CantidadDeBanios": 1,
+      "ServicioDeInternet": true,
+      "OfreceComida": false,
+      "CapacidadBodega": 200
+    },
+    "Clase1": 1,
+    "ListaPasajeros": [],
+    "CantidadAsientoClasePremium": 9,
+    "CantidadAsientoClaseTurista": 36,
+    "PesoValija": 20,
+    "DuracionDelVuelo": 3.5942798,
+    "CostoTurista": 165.660950,
+    "CostoPremium": 223.64228250,
+    "CostoClase": 165.660950
+  },
+  {
+    "IdVuelo": 4,
+    "CiudadDePartida": "Buenos Aires",
+    "CiudadDestino": "Acapulco",
+    "FechaDeVuelo": "2023-07-30T00:00:00",
+    "Avion": {
+      "Matricula": "DF3HG4AA",
+      "CantidadDeAsientos": 45,
+      "CantidadDeBanios": 1,
+      "ServicioDeInternet": true,
+      "OfreceComida": false,
+      "CapacidadBodega": 200
+    },
+    "Clase1": 0,
+    "ListaPasajeros": [],
+    "CantidadAsientoClasePremium": 9,
+    "CantidadAsientoClaseTurista": 36,
+    "PesoValija": 12,
+    "DuracionDelVuelo": 11.588269,
+    "CostoTurista": 1196.27200,
+    "CostoPremium": 1614.9672000,
+    "CostoClase": 1614.9672000
+  },
+  {
+    "IdVuelo": 5,
+    "CiudadDePartida": "Buenos Aires",
+    "CiudadDestino": "Miami",
+    "FechaDeVuelo": "2023-08-30T00:00:00",
+    "Avion": {
+      "Matricula": "EC1DC3AB",
+      "CantidadDeAsientos": 40,
+      "CantidadDeBanios": 1,
+      "ServicioDeInternet": true,
+      "OfreceComida": false,
+      "CapacidadBodega": 175
+    },
+    "Clase1": 1,
+    "ListaPasajeros": [],
+    "CantidadAsientoClasePremium": 8,
+    "CantidadAsientoClaseTurista": 32,
+    "PesoValija": 13,
+    "DuracionDelVuelo": 11.467798,
+    "CostoTurista": 956.683800,
+    "CostoPremium": 1291.52313000,
+    "CostoClase": 956.683800
+  },
+  {
+    "IdVuelo": 6,
+    "CiudadDePartida": "Buenos Aires",
+    "CiudadDestino": "Roma",
+    "FechaDeVuelo": "2023-04-12T00:00:00",
+    "Avion": {
+      "Matricula": "EC1DC3AB",
+      "CantidadDeAsientos": 40,
+      "CantidadDeBanios": 1,
+      "ServicioDeInternet": true,
+      "OfreceComida": false,
+      "CapacidadBodega": 175
+    },
+    "Clase1": 1,
+    "ListaPasajeros": [],
+    "CantidadAsientoClasePremium": 8,
+    "CantidadAsientoClaseTurista": 32,
+    "PesoValija": 18,
+    "DuracionDelVuelo": 8.078201,
+    "CostoTurista": 1140.78200,
+    "CostoPremium": 1540.0557000,
+    "CostoClase": 1140.78200
+  }
+]

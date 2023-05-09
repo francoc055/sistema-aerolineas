@@ -75,6 +75,7 @@
             btnIngresar.TabStop = false;
             btnIngresar.Text = "Ingresar al sistema";
             btnIngresar.UseVisualStyleBackColor = false;
+            btnIngresar.Click += btnIngresar_Click;
             // 
             // Login
             // 

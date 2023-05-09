@@ -1,0 +1,195 @@
+[
+  {
+    "IdVuelo": 1,
+    "CiudadDePartida": "Iguazu",
+    "CiudadDestino": "Salta",
+    "FechaDeVuelo": "2023-04-30T00:00:00",
+    "Avion": {
+      "Matricula": "CA2CA4HG",
+      "CantidadDeAsientos": 30,
+      "CantidadDeBanios": 2,
+      "ServicioDeInternet": false,
+      "OfreceComida": true,
+      "CapacidadBodega": 100
+    },
+    "ListaPasajeros": [
+      {
+        "EligeComida": true,
+        "EligeInternet": false,
+        "TipoClase": 1,
+        "EnVuelo": true,
+        "Nombre": "pepe",
+        "Apellido": "peres",
+        "Dni": 40256873,
+        "Edad": 24,
+        "Equipo": 1,
+        "PesoValija": 15
+      },
+      {
+        "EligeComida": false,
+        "EligeInternet": true,
+        "TipoClase": 1,
+        "EnVuelo": true,
+        "Nombre": "lolo",
+        "Apellido": "gonzales",
+        "Dni": 434250983,
+        "Edad": 23,
+        "Equipo": 0,
+        "PesoValija": 0
+      },
+      {
+        "EligeComida": true,
+        "EligeInternet": true,
+        "TipoClase": 0,
+        "EnVuelo": true,
+        "Nombre": "juan",
+        "Apellido": "rodriguez",
+        "Dni": 42250432,
+        "Edad": 22,
+        "Equipo": 0,
+        "PesoValija": 0
+      },
+      {
+        "EligeComida": false,
+        "EligeInternet": false,
+        "TipoClase": 0,
+        "EnVuelo": true,
+        "Nombre": "thomas",
+        "Apellido": "alvares",
+        "Dni": 443243983,
+        "Edad": 26,
+        "Equipo": 1,
+        "PesoValija": 9
+      },
+      {
+        "EligeComida": true,
+        "EligeInternet": false,
+        "TipoClase": 1,
+        "EnVuelo": true,
+        "Nombre": "franco",
+        "Apellido": "sanchez",
+        "Dni": 38870983,
+        "Edad": 30,
+        "Equipo": 1,
+        "PesoValija": 11
+      }
+    ],
+    "CantidadAsientoClasePremium": 6,
+    "CantidadAsientoClaseTurista": 24,
+    "DuracionDelVuelo": 3.0973248,
+    "CostoTurista": 190.868950,
+    "CostoPremium": 257.67308250,
+    "AsientosDisponibles": 25,
+    "TotalRecaudado": 1087.95301500
+  },
+  {
+    "IdVuelo": 2,
+    "CiudadDePartida": "Tucuman",
+    "CiudadDestino": "Neuquen",
+    "FechaDeVuelo": "2023-05-30T00:00:00",
+    "Avion": {
+      "Matricula": "CA2CA4HG",
+      "CantidadDeAsientos": 30,
+      "CantidadDeBanios": 2,
+      "ServicioDeInternet": false,
+      "OfreceComida": true,
+      "CapacidadBodega": 100
+    },
+    "ListaPasajeros": [],
+    "CantidadAsientoClasePremium": 6,
+    "CantidadAsientoClaseTurista": 24,
+    "DuracionDelVuelo": 2.6767883,
+    "CostoTurista": 174.66600,
+    "CostoPremium": 235.7991000,
+    "AsientosDisponibles": 30,
+    "TotalRecaudado": 0
+  },
+  {
+    "IdVuelo": 3,
+    "CiudadDePartida": "Neuquen",
+    "CiudadDestino": "Cordoba",
+    "FechaDeVuelo": "2023-06-30T00:00:00",
+    "Avion": {
+      "Matricula": "FE2GB1DF",
+      "CantidadDeAsientos": 45,
+      "CantidadDeBanios": 1,
+      "ServicioDeInternet": true,
+      "OfreceComida": false,
+      "CapacidadBodega": 200
+    },
+    "ListaPasajeros": [],
+    "CantidadAsientoClasePremium": 9,
+    "CantidadAsientoClaseTurista": 36,
+    "DuracionDelVuelo": 2.6561801,
+    "CostoTurista": 170.403350,
+    "CostoPremium": 230.04452250,
+    "AsientosDisponibles": 45,
+    "TotalRecaudado": 0
+  },
+  {
+    "IdVuelo": 4,
+    "CiudadDePartida": "Buenos Aires",
+    "CiudadDestino": "Acapulco",
+    "FechaDeVuelo": "2023-07-30T00:00:00",
+    "Avion": {
+      "Matricula": "FE2GB1DF",
+      "CantidadDeAsientos": 45,
+      "CantidadDeBanios": 1,
+      "ServicioDeInternet": true,
+      "OfreceComida": false,
+      "CapacidadBodega": 200
+    },
+    "ListaPasajeros": [],
+    "CantidadAsientoClasePremium": 9,
+    "CantidadAsientoClaseTurista": 36,
+    "DuracionDelVuelo": 8.36843,
+    "CostoTurista": 1011.90800,
+    "CostoPremium": 1366.0758000,
+    "AsientosDisponibles": 45,
+    "TotalRecaudado": 0
+  },
+  {
+    "IdVuelo": 5,
+    "CiudadDePartida": "Buenos Aires",
+    "CiudadDestino": "Miami",
+    "FechaDeVuelo": "2023-08-30T00:00:00",
+    "Avion": {
+      "Matricula": "HD1HD4GD",
+      "CantidadDeAsientos": 40,
+      "CantidadDeBanios": 1,
+      "ServicioDeInternet": true,
+      "OfreceComida": false,
+      "CapacidadBodega": 175
+    },
+    "ListaPasajeros": [],
+    "CantidadAsientoClasePremium": 8,
+    "CantidadAsientoClaseTurista": 32,
+    "DuracionDelVuelo": 8.069389,
+    "CostoTurista": 824.36700,
+    "CostoPremium": 1112.8954500,
+    "AsientosDisponibles": 40,
+    "TotalRecaudado": 0
+  },
+  {
+    "IdVuelo": 6,
+    "CiudadDePartida": "Buenos Aires",
+    "CiudadDestino": "Roma",
+    "FechaDeVuelo": "2023-04-12T00:00:00",
+    "Avion": {
+      "Matricula": "HD1HD4GD",
+      "CantidadDeAsientos": 40,
+      "CantidadDeBanios": 1,
+      "ServicioDeInternet": true,
+      "OfreceComida": false,
+      "CapacidadBodega": 175
+    },
+    "ListaPasajeros": [],
+    "CantidadAsientoClasePremium": 8,
+    "CantidadAsientoClaseTurista": 32,
+    "DuracionDelVuelo": 10.158357,
+    "CostoTurista": 1174.06200,
+    "CostoPremium": 1584.9837000,
+    "AsientosDisponibles": 40,
+    "TotalRecaudado": 0
+  }
+]

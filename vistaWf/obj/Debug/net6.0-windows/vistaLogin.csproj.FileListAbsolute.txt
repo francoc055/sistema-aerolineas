@@ -16,3 +16,7 @@ C:\Users\Franco\Desktop\Castañeda.Franco.PrimerParcial\vistaWf\obj\Debug\net6.0
 C:\Users\Franco\Desktop\Castañeda.Franco.PrimerParcial\vistaWf\obj\Debug\net6.0-windows\vistaLogin.pdb
 C:\Users\Franco\Desktop\Castañeda.Franco.PrimerParcial\vistaWf\obj\Debug\net6.0-windows\vistaLogin.genruntimeconfig.cache
 C:\Users\Franco\Desktop\Castañeda.Franco.PrimerParcial\vistaWf\obj\Debug\net6.0-windows\ref\vistaLogin.dll
+C:\Users\Franco\Desktop\Castañeda.Franco.PrimerParcial\vistaWf\bin\Debug\net6.0-windows\Entidades.dll
+C:\Users\Franco\Desktop\Castañeda.Franco.PrimerParcial\vistaWf\bin\Debug\net6.0-windows\Entidades.pdb
+C:\Users\Franco\Desktop\Castañeda.Franco.PrimerParcial\vistaWf\obj\Debug\net6.0-windows\vistaLogin.csproj.CopyComplete
+C:\Users\Franco\Desktop\Castañeda.Franco.PrimerParcial\vistaWf\obj\Debug\net6.0-windows\vistaLogin.VIstaVendedor.resources
