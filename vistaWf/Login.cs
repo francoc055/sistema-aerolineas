@@ -16,8 +16,15 @@ namespace vistaWf
         private void Login_Load(object sender, EventArgs e)
         {
             this.listaUser = Deserializador.DeserializarUsuarios();
+            if(!File.Exists("simulacionPasajeros.json"))
+            {
+                Serializador.SerializarPasajeros(Sistema.ListaDePasajeros);
+            }
+            else
+            {
+                Deserializador.DeserializarPasajeros();
+            }
             Serializador.SerializarVuelos();
-            Serializador.SerializarPasajeros();
         }
 
 
@@ -37,8 +44,8 @@ namespace vistaWf
                             //vendedor.Show();
                             vistaVendedor vendedor = new vistaVendedor();
                             vendedor.ShowDialog();
+                            //vendedor.Hide();
                             this.Close();
-                            //this.Hide();
                             //break;
                         }
 

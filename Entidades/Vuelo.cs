@@ -283,11 +283,6 @@ namespace Entidades
             sb.AppendLine($"Cantidad asientos clase turista: {CantidadAsientoClaseTurista}");
             sb.AppendLine($"Costo de la clase premium: {CostoPremium}");
             sb.AppendLine($"Costo de la clase turista: {CostoTurista}");
-            foreach (Pasajero item in ListaPasajeros)
-            {
-                sb.AppendLine("Pasajero:");
-                sb.AppendLine(item.ToString());
-            }
 
             return sb.ToString();
         }

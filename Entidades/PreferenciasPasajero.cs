@@ -13,10 +13,10 @@ namespace Entidades
         Clase tipoClase;
         bool enVuelo;
 
-        public bool EligeComida { get =>  eligeComida;}
-        public bool EligeInternet { get =>  eligeInternet;}
+        public bool EligeComida { get => eligeComida; set => eligeComida = value; }
+        public bool EligeInternet { get =>  eligeInternet; set => eligeInternet = value; }
 
-        public Clase TipoClase { get => tipoClase; }
+        public Clase TipoClase { get => tipoClase; set => tipoClase = value; }
         public bool EnVuelo { get => enVuelo; set => enVuelo = value; }
 
         public PreferenciasPasajero(string nombre, string apellido, double dni, int edad, EquipoDeViaje equipo, float pesoValija, bool eligeComida, bool eligeInternet, Clase tipoClase, bool enVuelo)

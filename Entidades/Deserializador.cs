@@ -88,8 +88,9 @@ namespace Entidades
                     {
                         string json_str = sr.ReadToEnd();
 
-                        List<PreferenciasPasajero> lista = JsonConvert.DeserializeObject<List<PreferenciasPasajero>>(json_str);
-                        return lista;
+                        //List<PreferenciasPasajero> lista = JsonConvert.DeserializeObject<List<PreferenciasPasajero>>(json_str);
+                        Sistema.ListaDePasajeros = JsonConvert.DeserializeObject<List<PreferenciasPasajero>>(json_str);
+                        return Sistema.ListaDePasajeros;
                     }
                 }
             }

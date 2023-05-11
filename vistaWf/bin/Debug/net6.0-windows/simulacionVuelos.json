@@ -5,7 +5,7 @@
     "CiudadDestino": "Salta",
     "FechaDeVuelo": "2023-04-30T00:00:00",
     "Avion": {
-      "Matricula": "CA2CA4HG",
+      "Matricula": "GG6CB0BB",
       "CantidadDeAsientos": 30,
       "CantidadDeBanios": 2,
       "ServicioDeInternet": false,
@@ -76,11 +76,11 @@
     ],
     "CantidadAsientoClasePremium": 6,
     "CantidadAsientoClaseTurista": 24,
-    "DuracionDelVuelo": 3.0973248,
-    "CostoTurista": 190.868950,
-    "CostoPremium": 257.67308250,
+    "DuracionDelVuelo": 2.7757196,
+    "CostoTurista": 108.728250,
+    "CostoPremium": 146.78313750,
     "AsientosDisponibles": 25,
-    "TotalRecaudado": 1087.95301500
+    "TotalRecaudado": 619.75102500
   },
   {
     "IdVuelo": 2,
@@ -88,7 +88,7 @@
     "CiudadDestino": "Neuquen",
     "FechaDeVuelo": "2023-05-30T00:00:00",
     "Avion": {
-      "Matricula": "CA2CA4HG",
+      "Matricula": "GG6CB0BB",
       "CantidadDeAsientos": 30,
       "CantidadDeBanios": 2,
       "ServicioDeInternet": false,
@@ -98,9 +98,9 @@
     "ListaPasajeros": [],
     "CantidadAsientoClasePremium": 6,
     "CantidadAsientoClaseTurista": 24,
-    "DuracionDelVuelo": 2.6767883,
-    "CostoTurista": 174.66600,
-    "CostoPremium": 235.7991000,
+    "DuracionDelVuelo": 3.9718063,
+    "CostoTurista": 122.232150,
+    "CostoPremium": 165.01340250,
     "AsientosDisponibles": 30,
     "TotalRecaudado": 0
   },
@@ -110,7 +110,7 @@
     "CiudadDestino": "Cordoba",
     "FechaDeVuelo": "2023-06-30T00:00:00",
     "Avion": {
-      "Matricula": "FE2GB1DF",
+      "Matricula": "BE0HC0AH",
       "CantidadDeAsientos": 45,
       "CantidadDeBanios": 1,
       "ServicioDeInternet": true,
@@ -120,9 +120,9 @@
     "ListaPasajeros": [],
     "CantidadAsientoClasePremium": 9,
     "CantidadAsientoClaseTurista": 36,
-    "DuracionDelVuelo": 2.6561801,
-    "CostoTurista": 170.403350,
-    "CostoPremium": 230.04452250,
+    "DuracionDelVuelo": 2.710293,
+    "CostoTurista": 199.787450,
+    "CostoPremium": 269.71305750,
     "AsientosDisponibles": 45,
     "TotalRecaudado": 0
   },
@@ -132,7 +132,7 @@
     "CiudadDestino": "Acapulco",
     "FechaDeVuelo": "2023-07-30T00:00:00",
     "Avion": {
-      "Matricula": "FE2GB1DF",
+      "Matricula": "BE0HC0AH",
       "CantidadDeAsientos": 45,
       "CantidadDeBanios": 1,
       "ServicioDeInternet": true,
@@ -142,9 +142,9 @@
     "ListaPasajeros": [],
     "CantidadAsientoClasePremium": 9,
     "CantidadAsientoClaseTurista": 36,
-    "DuracionDelVuelo": 8.36843,
-    "CostoTurista": 1011.90800,
-    "CostoPremium": 1366.0758000,
+    "DuracionDelVuelo": 9.325763,
+    "CostoTurista": 1003.32800,
+    "CostoPremium": 1354.4928000,
     "AsientosDisponibles": 45,
     "TotalRecaudado": 0
   },
@@ -154,7 +154,7 @@
     "CiudadDestino": "Miami",
     "FechaDeVuelo": "2023-08-30T00:00:00",
     "Avion": {
-      "Matricula": "HD1HD4GD",
+      "Matricula": "DC3HA4GF",
       "CantidadDeAsientos": 40,
       "CantidadDeBanios": 1,
       "ServicioDeInternet": true,
@@ -164,9 +164,9 @@
     "ListaPasajeros": [],
     "CantidadAsientoClasePremium": 8,
     "CantidadAsientoClaseTurista": 32,
-    "DuracionDelVuelo": 8.069389,
-    "CostoTurista": 824.36700,
-    "CostoPremium": 1112.8954500,
+    "DuracionDelVuelo": 8.85474,
+    "CostoTurista": 967.741300,
+    "CostoPremium": 1306.45075500,
     "AsientosDisponibles": 40,
     "TotalRecaudado": 0
   },
@@ -176,7 +176,7 @@
     "CiudadDestino": "Roma",
     "FechaDeVuelo": "2023-04-12T00:00:00",
     "Avion": {
-      "Matricula": "HD1HD4GD",
+      "Matricula": "DC3HA4GF",
       "CantidadDeAsientos": 40,
       "CantidadDeBanios": 1,
       "ServicioDeInternet": true,
@@ -186,9 +186,9 @@
     "ListaPasajeros": [],
     "CantidadAsientoClasePremium": 8,
     "CantidadAsientoClaseTurista": 32,
-    "DuracionDelVuelo": 10.158357,
-    "CostoTurista": 1174.06200,
-    "CostoPremium": 1584.9837000,
+    "DuracionDelVuelo": 11.267184,
+    "CostoTurista": 1031.93300,
+    "CostoPremium": 1393.1095500,
     "AsientosDisponibles": 40,
     "TotalRecaudado": 0
   }

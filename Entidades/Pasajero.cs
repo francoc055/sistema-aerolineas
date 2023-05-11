@@ -22,7 +22,7 @@ namespace Entidades
         public double Dni { get => dni; set => dni = value; }
         public int Edad { get => edad; set => edad = value; }
         public EquipoDeViaje Equipo { get => equipo; set => equipo = value; }
-        public float PesoValija { get => pesoValija; }
+        public float PesoValija { get => pesoValija; set => pesoValija = value; }
 
         private bool EsDeBodega()
         {

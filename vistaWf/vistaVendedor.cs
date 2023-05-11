@@ -8,19 +8,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Vista
 {
     public partial class vistaVendedor : VistaUsuario
     {
-        List<PreferenciasPasajero> listaPasajeros;
+        //List<PreferenciasPasajero> listaPasajeros;
         List<Vuelo> listaVuelos;
 
         public vistaVendedor()
         {
             InitializeComponent();
             listaVuelos = new List<Vuelo>();
-            listaPasajeros = new List<PreferenciasPasajero>();
+            //listaPasajeros = new List<PreferenciasPasajero>();
         }
 
 
@@ -28,11 +30,27 @@ namespace Vista
         {
             labelCambiar.Text = "Vendedor";
             listaVuelos = Deserializador.DeserializarVuelos();
-            listaPasajeros = Deserializador.DeserializarPasajeros();
+            //listaPasajeros = Deserializador.DeserializarPasajeros();
+            Sistema.ListaDePasajeros = Deserializador.DeserializarPasajeros();
 
             CargarDataGridVuelo();
             CargarDataEstadisticas();
             CargarDataVenderViaje();
+
+
+            //crud
+            this.cbEquipaje.DataSource = Enum.GetValues(typeof(EquipoDeViaje));
+            this.cbClase.DataSource = Enum.GetValues(typeof(Clase));
+            this.cbEquipaje.SelectedIndex = -1;
+            this.cbClase.SelectedIndex = -1;
+
+            ActualizarListPasajeros(dataGridViewCrudPasajero);
+
+            btnModificarPasajero.Enabled = false;
+            btnEliminarPasajero.Enabled = false;
+
+
+
         }
 
         //----------Listar viajes------------//
@@ -88,7 +106,6 @@ namespace Vista
         //----------Estadisticas historicas------------//
         private void CargarDataEstadisticas()
         {
-            //estadisticas historicas
             bool flag = false;
             foreach (Vuelo item in listaVuelos)
             {
@@ -160,10 +177,10 @@ namespace Vista
         //----------Estadisticas historicas------------//
 
 
-
+        //----------Vender viaje------------//
         private void CargarDataVenderViaje()
         {
-            foreach (PreferenciasPasajero item in listaPasajeros)
+            foreach (PreferenciasPasajero item in Sistema.ListaDePasajeros)
             {
                 if (item.EnVuelo == false)
                 {
@@ -242,6 +259,244 @@ namespace Vista
             }
 
         }
+
+
+        //----------------------REFACTORIZAR--------------------------//
+        private void btnAgregarVuelo_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow rowPasajero = dataGridViewPasajerosSinVuelo.SelectedRows[0];
+            DataGridViewRow rowVuelo = dataGridViewVuelosVender.SelectedRows[0];
+            double numeroDni = (double)rowPasajero.Cells[0].Value;
+            int idDelVuelo = (int)rowVuelo.Cells[6].Value;
+
+            Vuelo vuelo = GetVuelo(idDelVuelo);
+            PreferenciasPasajero pasajero = GetPasajero(numeroDni);
+
+            if (dataGridViewPasajerosSinVuelo.SelectedRows.Count > 0 && dataGridViewVuelosVender.SelectedRows.Count > 0)
+            {
+                if (vuelo is not null && pasajero is not null)
+                {
+                    vuelo += pasajero;
+                    pasajero.EnVuelo = true;
+                    MessageBox.Show($"Pasajero agregado al vuelo " +
+                        $"{vuelo.ToString()}");
+                    dataGridViewPasajerosSinVuelo.Rows.Clear();
+                    CargarDataVenderViaje();
+                    CargarDataEstadisticas();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar pasajero y vuelo");
+            }
+
+        }
+
+        private PreferenciasPasajero GetPasajero(double dni)
+        {
+            foreach (PreferenciasPasajero item in Sistema.ListaDePasajeros)
+            {
+                if (item.Dni == dni)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        private Vuelo GetVuelo(int id)
+        {
+            foreach (Vuelo item in listaVuelos)
+            {
+                if (item.IdVuelo == id)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+        //----------Vender viaje------------//
+
+
+        //----------CRUD Pasajeros------------//
+        private void btnCrearPasajero_Click(object sender, EventArgs e)
+        {
+            string nombre = txtNombre.Text;
+            string apellido = txtApellido.Text;
+            Double.TryParse(txtDni.Text, out double dni);
+            int.TryParse(txtEdad.Text, out int edad);
+            EquipoDeViaje equipaje = (EquipoDeViaje)this.cbEquipaje.SelectedItem;
+            float.TryParse(txtPesoValija.Text, out float pesoValija);
+            bool.TryParse(this.cbComida.SelectedItem.ToString(), out bool eligeComida);
+            bool.TryParse(this.cbInternet.SelectedItem.ToString(), out bool eligeInternet);
+            Clase tipoClase = (Clase)this.cbClase.SelectedItem;
+
+            PreferenciasPasajero pasajeroNuevo = new PreferenciasPasajero(nombre, apellido, dni, edad, equipaje, pesoValija, eligeComida, eligeInternet, tipoClase, false);
+            Sistema.ListaDePasajeros.Add(pasajeroNuevo);
+            ActualizarListPasajeros(dataGridViewCrudPasajero);
+            ClearTxtCb();
+            Serializador.SerializarPasajeros(Sistema.ListaDePasajeros);
+            //cargo datasGridViews
+            CargarDataVenderViaje();
+        }
+
+        private void ClearTxtCb()
+        {
+            foreach (Control control in tabPage4.Controls)
+            {
+                if (control is System.Windows.Forms.TextBox textBox)
+                {
+                    textBox.Text = " ";
+                }
+                if (control is System.Windows.Forms.ComboBox comboBox)
+                {
+                    comboBox.SelectedIndex = -1;
+                }
+            }
+        }
+
+
+        private void ActualizarListPasajeros(DataGridView data)
+        {
+            data.Rows.Clear();
+
+            foreach (PreferenciasPasajero pasajero in Sistema.ListaDePasajeros)
+            {
+                DataGridViewRow filaPasajero = new DataGridViewRow();
+                filaPasajero.CreateCells(data);
+                filaPasajero.Cells[0].Value = pasajero.Nombre;
+                filaPasajero.Cells[1].Value = pasajero.Apellido;
+                filaPasajero.Cells[2].Value = pasajero.Dni;
+                filaPasajero.Cells[3].Value = pasajero.Edad;
+                filaPasajero.Cells[4].Value = pasajero.Equipo;
+                filaPasajero.Cells[5].Value = pasajero.TipoClase;
+                data.Rows.Add(filaPasajero);
+            }
+        }
+
+        private void txtFiltrar_TextChanged(object sender, EventArgs e)
+        {
+            if (Double.TryParse(txtFiltrar.Text.Trim(), out double filtro))
+            {
+                foreach (DataGridViewRow fila in dataGridViewCrudPasajero.Rows)
+                {
+                    fila.Selected = false;
+                    if (Double.TryParse(fila.Cells[2].Value.ToString(), out double valor))
+                    {
+                        if (valor == filtro)
+                        {
+                            fila.Selected = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void dataGridViewCrudPasajero_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int posicion;
+            posicion = dataGridViewCrudPasajero.CurrentRow.Index;
+            txtNombre.Text = Sistema.ListaDePasajeros[posicion].Nombre;
+            txtApellido.Text = Sistema.ListaDePasajeros[posicion].Apellido;
+            txtDni.Text = Sistema.ListaDePasajeros[posicion].Dni.ToString();
+            txtEdad.Text = Sistema.ListaDePasajeros[posicion].Edad.ToString();
+            txtPesoValija.Text = Sistema.ListaDePasajeros[posicion].PesoValija.ToString();
+            cbEquipaje.SelectedIndex = DevolverPosicionEnumerado(Sistema.ListaDePasajeros[posicion].Equipo);
+            int indiceComida = cbComida.Items.IndexOf(Sistema.ListaDePasajeros[posicion].EligeComida.ToString());
+            int indiceInternet = cbComida.Items.IndexOf(Sistema.ListaDePasajeros[posicion].EligeInternet.ToString());
+            cbComida.SelectedIndex = indiceComida;
+            cbInternet.SelectedIndex = indiceInternet;
+            cbClase.SelectedIndex = DevolverPosicionEnumerado(Sistema.ListaDePasajeros[posicion].TipoClase);
+
+            btnCrearPasajero.Enabled = false;
+            btnModificarPasajero.Enabled = true;
+            btnEliminarPasajero.Enabled = true;
+        }
+        private int DevolverPosicionEnumerado(Enum valor)
+        {
+            int posicion = -1;
+            Type tipo = valor.GetType();
+
+            if (tipo.ToString() == "EquipoDeViaje")
+            {
+                EquipoDeViaje[] valoresEquipo = (EquipoDeViaje[])Enum.GetValues(typeof(EquipoDeViaje));
+                posicion = Array.IndexOf(valoresEquipo, valor);
+            }
+            else if (tipo.ToString() == "Clase")
+            {
+                Clase[] valoresClase = (Clase[])Enum.GetValues(typeof(Clase));
+                posicion = Array.IndexOf(valoresClase, valor);
+            }
+
+            return posicion;
+
+        }
+
+        private void btnModificarPasajero_Click(object sender, EventArgs e)
+        {
+            int.TryParse(txtDni.Text, out int doc);
+            PreferenciasPasajero pasajeroModificado = GetPasajero(doc);
+
+            Double.TryParse(txtDni.Text, out double dni);
+            int.TryParse(txtEdad.Text, out int edad);
+            float.TryParse(txtPesoValija.Text, out float pesoValija);
+            bool.TryParse(this.cbComida.SelectedItem.ToString(), out bool eligeComida);
+            bool.TryParse(this.cbInternet.SelectedItem.ToString(), out bool eligeInternet);
+
+            foreach (PreferenciasPasajero item in Sistema.ListaDePasajeros)
+            {
+                if (item == pasajeroModificado)
+                {
+                    item.Nombre = txtNombre.Text;
+                    item.Apellido = txtApellido.Text;
+                    item.Dni = dni;
+                    item.Edad = edad;
+                    item.Equipo = (EquipoDeViaje)this.cbEquipaje.SelectedItem;
+                    item.PesoValija = pesoValija;
+                    item.EligeComida = eligeComida;
+                    item.EligeInternet = eligeInternet;
+                    item.TipoClase = (Clase)this.cbClase.SelectedItem;
+                }
+            }
+
+            ActualizarListPasajeros(dataGridViewCrudPasajero);
+            ClearTxtCb();
+            Serializador.SerializarPasajeros(Sistema.ListaDePasajeros);
+            //cargo datasGridViews
+            CargarDataVenderViaje();
+        }
+
+        private void btnEliminarPasajero_Click(object sender, EventArgs e)
+        {
+            int.TryParse(txtDni.Text, out int doc);
+            PreferenciasPasajero pasajeroEliminar = GetPasajero(doc);
+
+            foreach (PreferenciasPasajero item in Sistema.ListaDePasajeros)
+            {
+                if (item == pasajeroEliminar)
+                {
+                    Sistema.ListaDePasajeros.Remove(item);
+                    break;
+                }
+            }
+
+            ActualizarListPasajeros(dataGridViewCrudPasajero);
+            ClearTxtCb();
+            Serializador.SerializarPasajeros(Sistema.ListaDePasajeros);
+            //cargo datasGridViews
+            CargarDataVenderViaje();
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            btnCrearPasajero.Enabled = true;
+            btnModificarPasajero.Enabled = false;
+            btnEliminarPasajero.Enabled = false;
+        }
     }
+    //----------CRUD Pasajeros------------//
+
+
 
 }

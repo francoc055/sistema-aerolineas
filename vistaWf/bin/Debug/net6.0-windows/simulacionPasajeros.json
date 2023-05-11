@@ -72,18 +72,6 @@
     "PesoValija": 19
   },
   {
-    "EligeComida": true,
-    "EligeInternet": false,
-    "TipoClase": 1,
-    "EnVuelo": false,
-    "Nombre": "rocio",
-    "Apellido": "pardi",
-    "Dni": 48870983,
-    "Edad": 33,
-    "Equipo": 0,
-    "PesoValija": 0
-  },
-  {
     "EligeComida": false,
     "EligeInternet": true,
     "TipoClase": 1,
@@ -116,6 +104,30 @@
     "Apellido": "hardy",
     "Dni": 33870983,
     "Edad": 47,
+    "Equipo": 0,
+    "PesoValija": 0
+  },
+  {
+    "EligeComida": false,
+    "EligeInternet": true,
+    "TipoClase": 0,
+    "EnVuelo": true,
+    "Nombre": "nahuel",
+    "Apellido": "ledesma",
+    "Dni": 33655123,
+    "Edad": 44,
+    "Equipo": 1,
+    "PesoValija": 21
+  },
+  {
+    "EligeComida": true,
+    "EligeInternet": false,
+    "TipoClase": 0,
+    "EnVuelo": false,
+    "Nombre": "coco",
+    "Apellido": "diaz",
+    "Dni": 446754652,
+    "Edad": 21,
     "Equipo": 0,
     "PesoValija": 0
   }

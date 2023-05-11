@@ -103,13 +103,13 @@ namespace Entidades
 
 
         ////-----------------------------------------------------------------------------------/////
-        public static void SerializarPasajeros()
+        public static void SerializarPasajeros(List<PreferenciasPasajero> listaPasajeros)
         {
             using (System.IO.StreamWriter sw = new System.IO.StreamWriter("simulacionPasajeros.json"))
             {
                 System.Text.Json.JsonSerializerOptions opciones = new System.Text.Json.JsonSerializerOptions();
                 opciones.WriteIndented = true;
-                string objJson = System.Text.Json.JsonSerializer.Serialize(Sistema.PasajerosHardcodeados(), opciones);
+                string objJson = System.Text.Json.JsonSerializer.Serialize(listaPasajeros, opciones);
                 sw.WriteLine(objJson);
                 Console.WriteLine(objJson);
             }

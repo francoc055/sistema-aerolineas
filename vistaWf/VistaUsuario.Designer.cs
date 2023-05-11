@@ -103,7 +103,7 @@
             tabPage5.Padding = new Padding(3);
             tabPage5.Size = new Size(975, 427);
             tabPage5.TabIndex = 4;
-            tabPage5.Text = "Pasajeros";
+            tabPage5.Text = "Vuelos";
             tabPage5.UseVisualStyleBackColor = true;
             // 
             // tabPage4
@@ -113,7 +113,7 @@
             tabPage4.Padding = new Padding(3);
             tabPage4.Size = new Size(975, 427);
             tabPage4.TabIndex = 3;
-            tabPage4.Text = "Viajes";
+            tabPage4.Text = "Pasajeros";
             tabPage4.UseVisualStyleBackColor = true;
             // 
             // tabPage2
