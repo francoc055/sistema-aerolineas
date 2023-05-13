@@ -16,15 +16,22 @@ namespace vistaWf
         private void Login_Load(object sender, EventArgs e)
         {
             this.listaUser = Deserializador.DeserializarUsuarios();
-            if(!File.Exists("simulacionPasajeros.json"))
+            if (!File.Exists("simulacionPasajeros.json"))
             {
-                Serializador.SerializarPasajeros(Sistema.ListaDePasajeros);
+                Serializador.SerializarPasajeros(Sistema.PasajerosHardcodeados());
             }
             else
             {
-                Deserializador.DeserializarPasajeros();
+                Sistema.ListaDePasajeros = Deserializador.DeserializarPasajeros();
             }
-            Serializador.SerializarVuelos();
+            if (!File.Exists("simulacionVuelos.json"))
+            {
+                Serializador.SerializarVuelos(Sistema.VuelosHardcodeados());
+            }
+            else
+            {
+                Sistema.ListaDeVuelos = Deserializador.DeserializarVuelos();
+            }
         }
 
 
@@ -35,24 +42,49 @@ namespace vistaWf
             {
                 foreach (Usuarios item in listaUser)
                 {
-                    if (txtUser.Text == item.nombre && txtContra.Text == item.clave)
+                    if (txtUser.Text == item.correo && txtContra.Text == item.clave)
                     {
                         if (item.perfil == "vendedor")
                         {
-
-                            //VistaUsuario vendedor = new VistaUsuario();
-                            //vendedor.Show();
                             vistaVendedor vendedor = new vistaVendedor();
                             vendedor.ShowDialog();
-                            //vendedor.Hide();
-                            this.Close();
-                            //break;
+                            this.Hide();
+                            //this.Close();
                         }
-
+                        if (item.perfil == "supervisor")
+                        {
+                            vistaSupervisor supervisor = new vistaSupervisor();
+                            supervisor.ShowDialog();
+                            this.Hide();
+                            //this.Close();
+                        }
                     }
                 }
             }
 
+        }
+
+        private void btnRellenarVendedor_Click(object sender, EventArgs e)
+        {
+            txtUser.Text = "cgorgen@vendedor.com";
+            txtContra.Text = "123abc45";
+        }
+
+        private void btnRellenarSupervisor_Click(object sender, EventArgs e)
+        {
+            txtUser.Text = "trobinson@super.com";
+            txtContra.Text = "12345678";
+        }
+
+        private void btnRellenarAdmin_Click(object sender, EventArgs e)
+        {
+            txtUser.Text = "admin@admin.com";
+            txtContra.Text = "12345678";
+        }
+
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using vistaWf;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Vista
@@ -16,22 +17,25 @@ namespace Vista
     public partial class vistaVendedor : VistaUsuario
     {
         //List<PreferenciasPasajero> listaPasajeros;
-        List<Vuelo> listaVuelos;
+        //List<Vuelo> listaVuelos;
+        //Login frmLogin;
 
         public vistaVendedor()
         {
             InitializeComponent();
-            listaVuelos = new List<Vuelo>();
+            //listaVuelos = new List<Vuelo>();
             //listaPasajeros = new List<PreferenciasPasajero>();
+            //frmLogin = new Login();
         }
 
 
         private void vistaVendedor_Load_1(object sender, EventArgs e)
         {
             labelCambiar.Text = "Vendedor";
-            listaVuelos = Deserializador.DeserializarVuelos();
+            //listaVuelos = Deserializador.DeserializarVuelos();
+            //Sistema.ListaDeVuelos = Deserializador.DeserializarVuelos();
             //listaPasajeros = Deserializador.DeserializarPasajeros();
-            Sistema.ListaDePasajeros = Deserializador.DeserializarPasajeros();
+            //Sistema.ListaDePasajeros = Deserializador.DeserializarPasajeros();
 
             CargarDataGridVuelo();
             CargarDataEstadisticas();
@@ -52,11 +56,19 @@ namespace Vista
 
 
         }
+        protected virtual void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (e.TabPage == tabPage5 || e.TabPage == tabPage6)
+            {
+                MessageBox.Show("No puedes ingresar ni realizar acciones ya que no eres Administrador");
+                e.Cancel = true;
+            }
+        }
 
         //----------Listar viajes------------//
         private void CargarDataGridVuelo()
         {
-            foreach (Vuelo v in listaVuelos)
+            foreach (Vuelo v in Sistema.ListaDeVuelos)
             {
                 DataGridViewRow filaVuelo = new DataGridViewRow();
                 filaVuelo.CreateCells(dataGridViewInfoVuelos);
@@ -80,7 +92,7 @@ namespace Vista
                 DataGridViewRow row = dataGridViewInfoVuelos.SelectedRows[0];
                 int valorCeldaIdVuelo = (int)row.Cells[6].Value;
 
-                foreach (Vuelo item in listaVuelos)
+                foreach (Vuelo item in Sistema.ListaDeVuelos)
                 {
                     if (item.IdVuelo == valorCeldaIdVuelo)
                     {
@@ -106,8 +118,9 @@ namespace Vista
         //----------Estadisticas historicas------------//
         private void CargarDataEstadisticas()
         {
+            dataGridViewEstadisticas.Rows.Clear();
             bool flag = false;
-            foreach (Vuelo item in listaVuelos)
+            foreach (Vuelo item in Sistema.ListaDeVuelos)
             {
                 if (item.FechaDeVuelo.Year <= DateTime.Now.Year && item.FechaDeVuelo.Month < DateTime.Now.Month)
                 {
@@ -131,7 +144,7 @@ namespace Vista
             Dictionary<string, int> destinosContador = new Dictionary<string, int>();
 
             bool flag = false;
-            foreach (Vuelo vuelo in listaVuelos)
+            foreach (Vuelo vuelo in Sistema.ListaDeVuelos)
             {
                 if (!flag)
                 {
@@ -212,7 +225,7 @@ namespace Vista
                 Clase valorCeldaClase = (Clase)row.Cells[6].Value;
 
                 bool flag = false;
-                foreach (Vuelo v in listaVuelos)
+                foreach (Vuelo v in Sistema.ListaDeVuelos)
                 {
                     float diferenciaPeso = v.Avion.CapacidadBodega - valorCeldaPesoEquipaje;
                     if (Clase.Turista.ToString() == valorCeldaClase.ToString())
@@ -283,6 +296,8 @@ namespace Vista
                     dataGridViewPasajerosSinVuelo.Rows.Clear();
                     CargarDataVenderViaje();
                     CargarDataEstadisticas();
+                    Serializador.SerializarPasajeros(Sistema.ListaDePasajeros);
+                    Serializador.SerializarVuelos(Sistema.ListaDeVuelos);
                 }
             }
             else
@@ -306,7 +321,7 @@ namespace Vista
 
         private Vuelo GetVuelo(int id)
         {
-            foreach (Vuelo item in listaVuelos)
+            foreach (Vuelo item in Sistema.ListaDeVuelos)
             {
                 if (item.IdVuelo == id)
                 {
@@ -319,7 +334,7 @@ namespace Vista
 
 
         //----------CRUD Pasajeros------------//
-        private void btnCrearPasajero_Click(object sender, EventArgs e)
+        protected virtual void btnCrearPasajero_Click(object sender, EventArgs e)
         {
             string nombre = txtNombre.Text;
             string apellido = txtApellido.Text;
@@ -340,7 +355,7 @@ namespace Vista
             CargarDataVenderViaje();
         }
 
-        private void ClearTxtCb()
+        protected virtual void ClearTxtCb()
         {
             foreach (Control control in tabPage4.Controls)
             {
@@ -356,7 +371,7 @@ namespace Vista
         }
 
 
-        private void ActualizarListPasajeros(DataGridView data)
+        protected virtual void ActualizarListPasajeros(DataGridView data)
         {
             data.Rows.Clear();
 
@@ -374,7 +389,7 @@ namespace Vista
             }
         }
 
-        private void txtFiltrar_TextChanged(object sender, EventArgs e)
+        protected virtual void txtFiltrar_TextChanged(object sender, EventArgs e)
         {
             if (Double.TryParse(txtFiltrar.Text.Trim(), out double filtro))
             {
@@ -393,7 +408,7 @@ namespace Vista
             }
         }
 
-        private void dataGridViewCrudPasajero_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        protected virtual void dataGridViewCrudPasajero_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int posicion;
             posicion = dataGridViewCrudPasajero.CurrentRow.Index;
@@ -413,7 +428,7 @@ namespace Vista
             btnModificarPasajero.Enabled = true;
             btnEliminarPasajero.Enabled = true;
         }
-        private int DevolverPosicionEnumerado(Enum valor)
+        protected virtual int DevolverPosicionEnumerado(Enum valor)
         {
             int posicion = -1;
             Type tipo = valor.GetType();
@@ -433,7 +448,7 @@ namespace Vista
 
         }
 
-        private void btnModificarPasajero_Click(object sender, EventArgs e)
+        protected virtual void btnModificarPasajero_Click(object sender, EventArgs e)
         {
             int.TryParse(txtDni.Text, out int doc);
             PreferenciasPasajero pasajeroModificado = GetPasajero(doc);
@@ -467,7 +482,7 @@ namespace Vista
             CargarDataVenderViaje();
         }
 
-        private void btnEliminarPasajero_Click(object sender, EventArgs e)
+        protected virtual void btnEliminarPasajero_Click(object sender, EventArgs e)
         {
             int.TryParse(txtDni.Text, out int doc);
             PreferenciasPasajero pasajeroEliminar = GetPasajero(doc);
@@ -488,14 +503,22 @@ namespace Vista
             CargarDataVenderViaje();
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
+        protected virtual void btnNuevo_Click(object sender, EventArgs e)
         {
             btnCrearPasajero.Enabled = true;
             btnModificarPasajero.Enabled = false;
             btnEliminarPasajero.Enabled = false;
         }
+        //----------CRUD Pasajeros------------//
+
+        protected virtual void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Login frmLogin = new Login();
+            frmLogin.Show();
+            this.Close();
+        }
     }
-    //----------CRUD Pasajeros------------//
+
 
 
 

@@ -115,13 +115,13 @@ namespace Entidades
             }
         }
 
-        public static void SerializarVuelos()
+        public static void SerializarVuelos(List<Vuelo> listaVuelos)
         {
             using (System.IO.StreamWriter sw = new System.IO.StreamWriter("simulacionVuelos.json"))
             {
                 System.Text.Json.JsonSerializerOptions opciones = new System.Text.Json.JsonSerializerOptions();
                 opciones.WriteIndented = true;
-                string objJson = System.Text.Json.JsonSerializer.Serialize(Sistema.VuelosHardcodeados(), opciones);
+                string objJson = System.Text.Json.JsonSerializer.Serialize(listaVuelos, opciones);
                 sw.WriteLine(objJson);
                 Console.WriteLine(objJson);
             }

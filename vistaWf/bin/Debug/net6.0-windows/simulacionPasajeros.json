@@ -99,7 +99,7 @@
     "EligeComida": true,
     "EligeInternet": false,
     "TipoClase": 1,
-    "EnVuelo": false,
+    "EnVuelo": true,
     "Nombre": "nicolas",
     "Apellido": "hardy",
     "Dni": 33870983,
@@ -130,5 +130,17 @@
     "Edad": 21,
     "Equipo": 0,
     "PesoValija": 0
+  },
+  {
+    "EligeComida": true,
+    "EligeInternet": false,
+    "TipoClase": 0,
+    "EnVuelo": true,
+    "Nombre": "franco",
+    "Apellido": "armani",
+    "Dni": 33409876,
+    "Edad": 34,
+    "Equipo": 1,
+    "PesoValija": 21
   }
 ]

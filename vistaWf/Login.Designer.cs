@@ -33,6 +33,9 @@
             txtContra = new TextBox();
             pictureBox1 = new PictureBox();
             btnIngresar = new Button();
+            btnRellenarVendedor = new Button();
+            btnRellenarSupervisor = new Button();
+            btnRellenarAdmin = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -68,7 +71,7 @@
             // 
             btnIngresar.BackColor = Color.FromArgb(64, 64, 64);
             btnIngresar.ForeColor = Color.White;
-            btnIngresar.Location = new Point(157, 283);
+            btnIngresar.Location = new Point(155, 277);
             btnIngresar.Name = "btnIngresar";
             btnIngresar.Size = new Size(124, 31);
             btnIngresar.TabIndex = 3;
@@ -77,18 +80,52 @@
             btnIngresar.UseVisualStyleBackColor = false;
             btnIngresar.Click += btnIngresar_Click;
             // 
+            // btnRellenarVendedor
+            // 
+            btnRellenarVendedor.Location = new Point(64, 324);
+            btnRellenarVendedor.Name = "btnRellenarVendedor";
+            btnRellenarVendedor.Size = new Size(93, 23);
+            btnRellenarVendedor.TabIndex = 4;
+            btnRellenarVendedor.Text = "Vendedor";
+            btnRellenarVendedor.UseVisualStyleBackColor = true;
+            btnRellenarVendedor.Click += btnRellenarVendedor_Click;
+            // 
+            // btnRellenarSupervisor
+            // 
+            btnRellenarSupervisor.Location = new Point(173, 324);
+            btnRellenarSupervisor.Name = "btnRellenarSupervisor";
+            btnRellenarSupervisor.Size = new Size(93, 23);
+            btnRellenarSupervisor.TabIndex = 5;
+            btnRellenarSupervisor.Text = "Supervisor";
+            btnRellenarSupervisor.UseVisualStyleBackColor = true;
+            btnRellenarSupervisor.Click += btnRellenarSupervisor_Click;
+            // 
+            // btnRellenarAdmin
+            // 
+            btnRellenarAdmin.Location = new Point(282, 324);
+            btnRellenarAdmin.Name = "btnRellenarAdmin";
+            btnRellenarAdmin.Size = new Size(93, 23);
+            btnRellenarAdmin.TabIndex = 6;
+            btnRellenarAdmin.Text = "Administrador";
+            btnRellenarAdmin.UseVisualStyleBackColor = true;
+            btnRellenarAdmin.Click += btnRellenarAdmin_Click;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Silver;
             ClientSize = new Size(466, 375);
+            Controls.Add(btnRellenarAdmin);
+            Controls.Add(btnRellenarSupervisor);
+            Controls.Add(btnRellenarVendedor);
             Controls.Add(btnIngresar);
             Controls.Add(pictureBox1);
             Controls.Add(txtContra);
             Controls.Add(txtUser);
             Name = "Login";
             Text = "Form1";
+            FormClosing += Login_FormClosing;
             Load += Login_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -101,5 +138,8 @@
         private TextBox txtContra;
         private PictureBox pictureBox1;
         private Button btnIngresar;
+        private Button btnRellenarVendedor;
+        private Button btnRellenarSupervisor;
+        private Button btnRellenarAdmin;
     }
 }

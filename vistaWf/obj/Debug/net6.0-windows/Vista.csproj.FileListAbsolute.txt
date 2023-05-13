@@ -22,3 +22,4 @@ C:\Users\Franco\Desktop\Castañeda.Franco.PrimerParcial\vistaWf\obj\Debug\net6.0
 C:\Users\Franco\Desktop\Castañeda.Franco.PrimerParcial\vistaWf\obj\Debug\net6.0-windows\Vista.VistaUsuario.resources
 C:\Users\Franco\Desktop\Castañeda.Franco.PrimerParcial\vistaWf\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
 C:\Users\Franco\Desktop\Castañeda.Franco.PrimerParcial\vistaWf\obj\Debug\net6.0-windows\Vista.vistaVendedor.resources
+C:\Users\Franco\Desktop\Castañeda.Franco.PrimerParcial\vistaWf\obj\Debug\net6.0-windows\Vista.vistaSupervisor.resources
