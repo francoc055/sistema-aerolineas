@@ -31,11 +31,13 @@ namespace Vista
 
         private void vistaVendedor_Load_1(object sender, EventArgs e)
         {
-            labelCambiar.Text = "Vendedor";
             //listaVuelos = Deserializador.DeserializarVuelos();
             //Sistema.ListaDeVuelos = Deserializador.DeserializarVuelos();
             //listaPasajeros = Deserializador.DeserializarPasajeros();
             //Sistema.ListaDePasajeros = Deserializador.DeserializarPasajeros();
+
+            CargarNombreOperador();
+
 
             CargarDataGridVuelo();
             CargarDataEstadisticas();
@@ -53,9 +55,24 @@ namespace Vista
             btnModificarPasajero.Enabled = false;
             btnEliminarPasajero.Enabled = false;
 
-
+            //numericUpDownDni.Value = 1;
+            //numericUpDownValija.Value = 1;
+            //numericUpDownEdad.Value = 1;
 
         }
+
+        protected virtual void CargarNombreOperador()
+        {
+            foreach (Usuarios item in Login.ListaUser)
+            {
+                if (item.correo == Login.CorreoUser)
+                {
+                    labelCambiar.Text = $"{item.perfil} {item.nombre} {item.apellido} - {DateTime.Now.Date}";
+                    break;
+                }
+            }
+        }
+
         protected virtual void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
         {
             if (e.TabPage == tabPage5 || e.TabPage == tabPage6)
@@ -64,6 +81,8 @@ namespace Vista
                 e.Cancel = true;
             }
         }
+
+
 
         //----------Listar viajes------------//
         private void CargarDataGridVuelo()
@@ -336,23 +355,73 @@ namespace Vista
         //----------CRUD Pasajeros------------//
         protected virtual void btnCrearPasajero_Click(object sender, EventArgs e)
         {
-            string nombre = txtNombre.Text;
-            string apellido = txtApellido.Text;
-            Double.TryParse(txtDni.Text, out double dni);
-            int.TryParse(txtEdad.Text, out int edad);
-            EquipoDeViaje equipaje = (EquipoDeViaje)this.cbEquipaje.SelectedItem;
-            float.TryParse(txtPesoValija.Text, out float pesoValija);
-            bool.TryParse(this.cbComida.SelectedItem.ToString(), out bool eligeComida);
-            bool.TryParse(this.cbInternet.SelectedItem.ToString(), out bool eligeInternet);
-            Clase tipoClase = (Clase)this.cbClase.SelectedItem;
 
-            PreferenciasPasajero pasajeroNuevo = new PreferenciasPasajero(nombre, apellido, dni, edad, equipaje, pesoValija, eligeComida, eligeInternet, tipoClase, false);
-            Sistema.ListaDePasajeros.Add(pasajeroNuevo);
-            ActualizarListPasajeros(dataGridViewCrudPasajero);
-            ClearTxtCb();
-            Serializador.SerializarPasajeros(Sistema.ListaDePasajeros);
-            //cargo datasGridViews
-            CargarDataVenderViaje();
+            if (Validaciones())
+            {
+                string nombre = txtNombre.Text;
+                string apellido = txtApellido.Text;
+                double dni = (double)numericUpDownDni.Value;
+                int edad = (int)numericUpDownEdad.Value;
+                EquipoDeViaje equipaje = (EquipoDeViaje)this.cbEquipaje.SelectedItem;
+                float pesoValija = (float)numericUpDownValija.Value;
+                bool.TryParse(this.cbComida.SelectedItem.ToString(), out bool eligeComida);
+                bool.TryParse(this.cbInternet.SelectedItem.ToString(), out bool eligeInternet);
+                Clase tipoClase = (Clase)this.cbClase.SelectedItem;
+
+                PreferenciasPasajero pasajeroNuevo = new PreferenciasPasajero(nombre, apellido, dni, edad, equipaje, pesoValija, eligeComida, eligeInternet, tipoClase, false);
+
+                foreach (PreferenciasPasajero item in Sistema.ListaDePasajeros)
+                {
+                    if (item != pasajeroNuevo)
+                    {
+                        Sistema.ListaDePasajeros.Add(pasajeroNuevo);
+                        ActualizarListPasajeros(dataGridViewCrudPasajero);
+                        ClearTxtCb();
+                        Serializador.SerializarPasajeros(Sistema.ListaDePasajeros);
+                        //cargo datasGridViews
+                        CargarDataVenderViaje();
+                        break;
+                    }
+                    else
+                    {
+                        MessageBox.Show("El pasajero ya existe");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error. verifique los datos");
+            }
+        }
+
+        private bool Validaciones()
+        {
+            bool ret = false;
+            if (cbClase.SelectedItem != null)
+            {
+                Clase tipoClase = (Clase)this.cbClase.SelectedItem;
+                if (!string.IsNullOrEmpty(txtApellido.Text) && !string.IsNullOrEmpty(txtNombre.Text) && cbEquipaje.SelectedIndex != -1 && cbClase.SelectedIndex != -1
+                && cbComida.SelectedIndex != -1 && cbInternet.SelectedIndex != -1 && numericUpDownDni.Value != 10000000)
+                {
+                    ret = true;
+                    if (tipoClase == Clase.Turista)
+                    {
+                        if (numericUpDownValija.Value > 25)
+                        {
+                            ret = false;
+                        }
+                    }
+                    else if (tipoClase == Clase.Premium)
+                    {
+                        if (numericUpDownValija.Value > 42)
+                        {
+                            ret = false;
+                        }
+                    }
+                }
+            }
+
+            return ret;
         }
 
         protected virtual void ClearTxtCb()
@@ -366,6 +435,10 @@ namespace Vista
                 if (control is System.Windows.Forms.ComboBox comboBox)
                 {
                     comboBox.SelectedIndex = -1;
+                }
+                if (control is NumericUpDown numericUp)
+                {
+                    numericUp.Value = numericUp.Minimum;
                 }
             }
         }
@@ -393,20 +466,50 @@ namespace Vista
         {
             if (Double.TryParse(txtFiltrar.Text.Trim(), out double filtro))
             {
-                foreach (DataGridViewRow fila in dataGridViewCrudPasajero.Rows)
+                if (filtro.ToString().Length == 8)
                 {
-                    fila.Selected = false;
-                    if (Double.TryParse(fila.Cells[2].Value.ToString(), out double valor))
+                    foreach (DataGridViewRow fila in dataGridViewCrudPasajero.Rows)
                     {
-                        if (valor == filtro)
+                        fila.Selected = false;
+                        if (Double.TryParse(fila.Cells[2].Value.ToString(), out double valor))
                         {
-                            fila.Selected = true;
-                            break;
+                            if (valor == filtro)
+                            {
+                                dataGridViewCrudPasajero.Rows.Clear();
+                                //break;
+                                foreach (PreferenciasPasajero pasajero in Sistema.ListaDePasajeros)
+                                {
+                                    if (pasajero.Dni == valor)
+                                    {
+                                        fila.CreateCells(dataGridViewCrudPasajero);
+                                        fila.Cells[0].Value = pasajero.Nombre;
+                                        fila.Cells[1].Value = pasajero.Apellido;
+                                        fila.Cells[2].Value = pasajero.Dni;
+                                        fila.Cells[3].Value = pasajero.Edad;
+                                        fila.Cells[4].Value = pasajero.Equipo;
+                                        fila.Cells[5].Value = pasajero.TipoClase;
+                                        dataGridViewCrudPasajero.Rows.Add(fila);
+
+                                        fila.Selected = true;
+                                        break;
+                                    }
+                                }
+                                break;
+
+                            }
+
                         }
+
                     }
+                }
+                else if (txtFiltrar.Text.Trim().Length != 8)
+                {
+                    dataGridViewCrudPasajero.Rows.Clear();
+                    ActualizarListPasajeros(dataGridViewCrudPasajero);
                 }
             }
         }
+
 
         protected virtual void dataGridViewCrudPasajero_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -414,9 +517,9 @@ namespace Vista
             posicion = dataGridViewCrudPasajero.CurrentRow.Index;
             txtNombre.Text = Sistema.ListaDePasajeros[posicion].Nombre;
             txtApellido.Text = Sistema.ListaDePasajeros[posicion].Apellido;
-            txtDni.Text = Sistema.ListaDePasajeros[posicion].Dni.ToString();
-            txtEdad.Text = Sistema.ListaDePasajeros[posicion].Edad.ToString();
-            txtPesoValija.Text = Sistema.ListaDePasajeros[posicion].PesoValija.ToString();
+            numericUpDownDni.Value = (decimal)Sistema.ListaDePasajeros[posicion].Dni;
+            numericUpDownEdad.Value = (decimal)Sistema.ListaDePasajeros[posicion].Edad;
+            numericUpDownValija.Value = (decimal)Sistema.ListaDePasajeros[posicion].PesoValija;
             cbEquipaje.SelectedIndex = DevolverPosicionEnumerado(Sistema.ListaDePasajeros[posicion].Equipo);
             int indiceComida = cbComida.Items.IndexOf(Sistema.ListaDePasajeros[posicion].EligeComida.ToString());
             int indiceInternet = cbComida.Items.IndexOf(Sistema.ListaDePasajeros[posicion].EligeInternet.ToString());
@@ -450,57 +553,101 @@ namespace Vista
 
         protected virtual void btnModificarPasajero_Click(object sender, EventArgs e)
         {
-            int.TryParse(txtDni.Text, out int doc);
-            PreferenciasPasajero pasajeroModificado = GetPasajero(doc);
-
-            Double.TryParse(txtDni.Text, out double dni);
-            int.TryParse(txtEdad.Text, out int edad);
-            float.TryParse(txtPesoValija.Text, out float pesoValija);
-            bool.TryParse(this.cbComida.SelectedItem.ToString(), out bool eligeComida);
-            bool.TryParse(this.cbInternet.SelectedItem.ToString(), out bool eligeInternet);
-
-            foreach (PreferenciasPasajero item in Sistema.ListaDePasajeros)
+            if (Validaciones())
             {
-                if (item == pasajeroModificado)
+                double doc = (double)numericUpDownDni.Value;
+                PreferenciasPasajero pasajeroModificado = GetPasajero(doc);
+
+                int edad = (int)numericUpDownEdad.Value;
+                float pesoValija = (float)numericUpDownValija.Value;
+                bool.TryParse(this.cbComida.SelectedItem.ToString(), out bool eligeComida);
+                bool.TryParse(this.cbInternet.SelectedItem.ToString(), out bool eligeInternet);
+                foreach (PreferenciasPasajero item in Sistema.ListaDePasajeros)
                 {
-                    item.Nombre = txtNombre.Text;
-                    item.Apellido = txtApellido.Text;
-                    item.Dni = dni;
-                    item.Edad = edad;
-                    item.Equipo = (EquipoDeViaje)this.cbEquipaje.SelectedItem;
-                    item.PesoValija = pesoValija;
-                    item.EligeComida = eligeComida;
-                    item.EligeInternet = eligeInternet;
-                    item.TipoClase = (Clase)this.cbClase.SelectedItem;
+                    if (item == pasajeroModificado && pasajeroModificado.EnVuelo == false)
+                    {
+                        item.Nombre = txtNombre.Text;
+                        item.Apellido = txtApellido.Text;
+                        item.Dni = doc;
+                        item.Edad = edad;
+                        item.Equipo = (EquipoDeViaje)this.cbEquipaje.SelectedItem;
+                        item.PesoValija = pesoValija;
+                        item.EligeComida = eligeComida;
+                        item.EligeInternet = eligeInternet;
+                        item.TipoClase = (Clase)this.cbClase.SelectedItem;
+                        ActualizarListPasajeros(dataGridViewCrudPasajero);
+                        ClearTxtCb();
+                        Serializador.SerializarPasajeros(Sistema.ListaDePasajeros);
+                        //cargo datasGridViews
+                        CargarDataVenderViaje();
+                        break;
+                    }
+                }
+                if (pasajeroModificado.EnVuelo)
+                {
+                    MessageBox.Show("Error. No se puede modificar el pasajero");
                 }
             }
-
-            ActualizarListPasajeros(dataGridViewCrudPasajero);
-            ClearTxtCb();
-            Serializador.SerializarPasajeros(Sistema.ListaDePasajeros);
-            //cargo datasGridViews
-            CargarDataVenderViaje();
+            else
+            {
+                MessageBox.Show("Error. verifique los datos");
+            }
         }
 
         protected virtual void btnEliminarPasajero_Click(object sender, EventArgs e)
         {
-            int.TryParse(txtDni.Text, out int doc);
+            //int.TryParse(txtDni.Text, out int doc);
+            double doc = (double)numericUpDownDni.Value;
             PreferenciasPasajero pasajeroEliminar = GetPasajero(doc);
 
-            foreach (PreferenciasPasajero item in Sistema.ListaDePasajeros)
+            int indice = ValidarPasajeroViajeRealizado(pasajeroEliminar);
+            if (indice == -1)
             {
-                if (item == pasajeroEliminar)
+                foreach (PreferenciasPasajero item in Sistema.ListaDePasajeros)
                 {
-                    Sistema.ListaDePasajeros.Remove(item);
-                    break;
+                    if (item == pasajeroEliminar)
+                    {
+                        Sistema.ListaDePasajeros.Remove(item);
+                        foreach (Vuelo itemV in Sistema.ListaDeVuelos)
+                        {
+                            if (itemV.IdVuelo == indice)
+                            {
+                                itemV.ListaPasajeros.Remove(item);
+                            }
+                        }
+                        ActualizarListPasajeros(dataGridViewCrudPasajero);
+                        ClearTxtCb();
+                        Serializador.SerializarPasajeros(Sistema.ListaDePasajeros);
+                        //cargo datasGridViews
+                        CargarDataVenderViaje();
+                        break;
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show("El pasajero ya tuvo un viaje realizado");
+            }
+        }
 
-            ActualizarListPasajeros(dataGridViewCrudPasajero);
-            ClearTxtCb();
-            Serializador.SerializarPasajeros(Sistema.ListaDePasajeros);
-            //cargo datasGridViews
-            CargarDataVenderViaje();
+        private int ValidarPasajeroViajeRealizado(PreferenciasPasajero pasajero)
+        {
+            //bool ret = false;
+            int indice = -1;
+            foreach (Vuelo item in Sistema.ListaDeVuelos)
+            {
+                if (item.FechaDeVuelo.Year <= DateTime.Now.Year && item.FechaDeVuelo.Month < DateTime.Now.Month)
+                {
+                    foreach (PreferenciasPasajero itemP in item.ListaPasajeros)
+                    {
+                        if (itemP == pasajero)
+                        {
+                            indice = item.IdVuelo;
+                        }
+                    }
+                }
+            }
+            return indice;
         }
 
         protected virtual void btnNuevo_Click(object sender, EventArgs e)
@@ -508,15 +655,16 @@ namespace Vista
             btnCrearPasajero.Enabled = true;
             btnModificarPasajero.Enabled = false;
             btnEliminarPasajero.Enabled = false;
+            ClearTxtCb();
         }
         //----------CRUD Pasajeros------------//
-
-        protected virtual void btnCerrarSesion_Click(object sender, EventArgs e)
+        protected override void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            Login frmLogin = new Login();
-            frmLogin.Show();
-            this.Close();
+            base.btnCerrarSesion_Click(sender, e);
         }
+
+
+
     }
 
 

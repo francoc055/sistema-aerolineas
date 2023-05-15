@@ -18,7 +18,7 @@
     "EnVuelo": true,
     "Nombre": "lolo",
     "Apellido": "gonzales",
-    "Dni": 434250983,
+    "Dni": 43425098,
     "Edad": 23,
     "Equipo": 0,
     "PesoValija": 0
@@ -42,7 +42,7 @@
     "EnVuelo": true,
     "Nombre": "thomas",
     "Apellido": "alvares",
-    "Dni": 443243983,
+    "Dni": 44324393,
     "Edad": 26,
     "Equipo": 1,
     "PesoValija": 9
@@ -72,6 +72,18 @@
     "PesoValija": 19
   },
   {
+    "EligeComida": true,
+    "EligeInternet": false,
+    "TipoClase": 1,
+    "EnVuelo": false,
+    "Nombre": "rocio",
+    "Apellido": "pardi",
+    "Dni": 48870983,
+    "Edad": 33,
+    "Equipo": 0,
+    "PesoValija": 0
+  },
+  {
     "EligeComida": false,
     "EligeInternet": true,
     "TipoClase": 1,
@@ -99,48 +111,12 @@
     "EligeComida": true,
     "EligeInternet": false,
     "TipoClase": 1,
-    "EnVuelo": true,
+    "EnVuelo": false,
     "Nombre": "nicolas",
     "Apellido": "hardy",
-    "Dni": 33870983,
+    "Dni": 33870903,
     "Edad": 47,
     "Equipo": 0,
     "PesoValija": 0
-  },
-  {
-    "EligeComida": false,
-    "EligeInternet": true,
-    "TipoClase": 0,
-    "EnVuelo": true,
-    "Nombre": "nahuel",
-    "Apellido": "ledesma",
-    "Dni": 33655123,
-    "Edad": 44,
-    "Equipo": 1,
-    "PesoValija": 21
-  },
-  {
-    "EligeComida": true,
-    "EligeInternet": false,
-    "TipoClase": 0,
-    "EnVuelo": false,
-    "Nombre": "coco",
-    "Apellido": "diaz",
-    "Dni": 446754652,
-    "Edad": 21,
-    "Equipo": 0,
-    "PesoValija": 0
-  },
-  {
-    "EligeComida": true,
-    "EligeInternet": false,
-    "TipoClase": 0,
-    "EnVuelo": true,
-    "Nombre": "franco",
-    "Apellido": "armani",
-    "Dni": 33409876,
-    "Edad": 34,
-    "Equipo": 1,
-    "PesoValija": 21
   }
 ]

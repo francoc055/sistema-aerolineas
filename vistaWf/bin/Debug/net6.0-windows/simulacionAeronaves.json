@@ -1,0 +1,26 @@
+[
+  {
+    "Matricula": "BH2FF0DB",
+    "CantidadDeAsientos": 400,
+    "CantidadDeBanios": 2,
+    "ServicioDeInternet": false,
+    "OfreceComida": true,
+    "CapacidadBodega": 2000
+  },
+  {
+    "Matricula": "DH5HF5FA",
+    "CantidadDeAsientos": 350,
+    "CantidadDeBanios": 1,
+    "ServicioDeInternet": true,
+    "OfreceComida": false,
+    "CapacidadBodega": 3500
+  },
+  {
+    "Matricula": "FD3DE3AD",
+    "CantidadDeAsientos": 600,
+    "CantidadDeBanios": 1,
+    "ServicioDeInternet": true,
+    "OfreceComida": false,
+    "CapacidadBodega": 5000
+  }
+]

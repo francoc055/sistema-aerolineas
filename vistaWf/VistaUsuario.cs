@@ -9,6 +9,7 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using vistaWf;
 
 namespace Vista
 {
@@ -20,5 +21,13 @@ namespace Vista
             InitializeComponent();
         }
 
+
+
+        protected virtual void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Login frmLogin = new Login();
+            frmLogin.Show();
+            this.Close();
+        }
     }
 }

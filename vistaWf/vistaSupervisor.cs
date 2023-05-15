@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using vistaWf;
 
 namespace Vista
 {
@@ -19,10 +21,14 @@ namespace Vista
 
         private void vistaSupervisor_Load(object sender, EventArgs e)
         {
-            labelCambiar.Text = "Supervisor";
+            //labelCambiar.Text = "Supervisor";
+            base.CargarNombreOperador();
+
             tabControl1.SelectedTab = tabPage2;
             //tabPage1.Enabled = false;
         }
+
+       
 
         protected override void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
         {
@@ -38,9 +44,6 @@ namespace Vista
             }
         }
 
-        protected override void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
-            base.btnCerrarSesion_Click(sender,e);
-        }
+
     }
 }

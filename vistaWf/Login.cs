@@ -5,7 +5,11 @@ namespace vistaWf
 {
     public partial class Login : Form
     {
-        List<Usuarios> listaUser;
+        static List<Usuarios> listaUser;
+        static string correoUser;
+
+        static public List<Usuarios> ListaUser { get => listaUser; }
+        static public string CorreoUser { get => correoUser; }
 
         public Login()
         {
@@ -15,30 +19,45 @@ namespace vistaWf
 
         private void Login_Load(object sender, EventArgs e)
         {
-            this.listaUser = Deserializador.DeserializarUsuarios();
+            listaUser = Deserializador.DeserializarUsuarios();
             if (!File.Exists("simulacionPasajeros.json"))
             {
                 Serializador.SerializarPasajeros(Sistema.PasajerosHardcodeados());
+                Sistema.ListaDePasajeros = Deserializador.DeserializarPasajeros();
             }
             else
             {
                 Sistema.ListaDePasajeros = Deserializador.DeserializarPasajeros();
             }
+
+            if (!File.Exists("simulacionAeronaves.json"))
+            {
+                Serializador.SerializarAeronaves(Sistema.AeronavesHardcodeados());
+                Sistema.ListaDeAeronaves = Deserializador.DeserializarAeronaves();
+            }
+            else
+            {
+                Sistema.ListaDeAeronaves = Deserializador.DeserializarAeronaves();
+            }
+
             if (!File.Exists("simulacionVuelos.json"))
             {
                 Serializador.SerializarVuelos(Sistema.VuelosHardcodeados());
+                Sistema.ListaDeVuelos = Deserializador.DeserializarVuelos();
             }
             else
             {
                 Sistema.ListaDeVuelos = Deserializador.DeserializarVuelos();
             }
+
+            
         }
 
 
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (listaUser != null)
+            if (ListaUser != null)
             {
                 foreach (Usuarios item in listaUser)
                 {
@@ -46,17 +65,26 @@ namespace vistaWf
                     {
                         if (item.perfil == "vendedor")
                         {
+                            correoUser = item.correo;
                             vistaVendedor vendedor = new vistaVendedor();
                             vendedor.ShowDialog();
                             this.Hide();
                             //this.Close();
                         }
-                        if (item.perfil == "supervisor")
+                        else if (item.perfil == "supervisor")
                         {
+                            correoUser = item.correo;
                             vistaSupervisor supervisor = new vistaSupervisor();
                             supervisor.ShowDialog();
                             this.Hide();
                             //this.Close();
+                        }
+                        else if(item.perfil == "administrador")
+                        {
+                            correoUser = item.correo;
+                            vistaAdministrador administrador = new vistaAdministrador();
+                            administrador.ShowDialog();
+                            this.Hide();
                         }
                     }
                 }

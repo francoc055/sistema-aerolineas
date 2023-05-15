@@ -14,11 +14,12 @@ namespace Entidades
 
         public static List<PreferenciasPasajero> ListaDePasajeros { get => listaDePasajeros; set => listaDePasajeros = value; }
         public static List<Vuelo> ListaDeVuelos { get => listaDeVuelos; set => listaDeVuelos = value; }
+        public static List<Aeronave> ListaDeAeronaves { get => listaDeAeronaves; set => listaDeAeronaves = value; }
 
         static Sistema()
         {
             ListaDePasajeros = new List<PreferenciasPasajero>();
-            listaDeAeronaves = new List<Aeronave>();
+            ListaDeAeronaves = new List<Aeronave>();
             ListaDeVuelos = new List<Vuelo>();
         }
 
@@ -27,39 +28,41 @@ namespace Entidades
             ListaDePasajeros.Clear();
 
             ListaDePasajeros.Add(new PreferenciasPasajero("pepe", "peres", 40256873, 24, EquipoDeViaje.DeBodega, 15,  true, false, Clase.Turista, true));
-            ListaDePasajeros.Add(new PreferenciasPasajero("lolo", "gonzales", 434250983, 23, EquipoDeViaje.DeMano, 12, false, true, Clase.Turista, true));
+            ListaDePasajeros.Add(new PreferenciasPasajero("lolo", "gonzales", 43425098, 23, EquipoDeViaje.DeMano, 12, false, true, Clase.Turista, true));
             ListaDePasajeros.Add(new PreferenciasPasajero("juan", "rodriguez", 42250432, 22, EquipoDeViaje.DeMano, 10, true, true, Clase.Premium, true));
-            ListaDePasajeros.Add(new PreferenciasPasajero("thomas", "alvares", 443243983, 26, EquipoDeViaje.DeBodega, 9, false, false, Clase.Premium, true));
+            ListaDePasajeros.Add(new PreferenciasPasajero("thomas", "alvares", 44324393, 26, EquipoDeViaje.DeBodega, 9, false, false, Clase.Premium, true));
             ListaDePasajeros.Add(new PreferenciasPasajero("franco", "sanchez", 38870983, 30, EquipoDeViaje.DeBodega, 11, true, false, Clase.Turista, true));
             ListaDePasajeros.Add(new PreferenciasPasajero("lucia", "melgar", 18870983, 33, EquipoDeViaje.DeBodega, 19, false, false, Clase.Turista, false));
             ListaDePasajeros.Add(new PreferenciasPasajero("rocio", "pardi", 48870983, 33, EquipoDeViaje.DeMano, 10, true, false, Clase.Turista, false));
             ListaDePasajeros.Add(new PreferenciasPasajero("camila", "sarvi", 18870983, 50, EquipoDeViaje.DeBodega, 8, false, true, Clase.Turista, false));
             ListaDePasajeros.Add(new PreferenciasPasajero("marco", "miller", 31870983, 35, EquipoDeViaje.DeMano, 23, true, true, Clase.Turista, false));
-            ListaDePasajeros.Add(new PreferenciasPasajero("nicolas", "hardy", 33870983, 47, EquipoDeViaje.DeMano, 11, true, false, Clase.Turista, false));
+            ListaDePasajeros.Add(new PreferenciasPasajero("nicolas", "hardy", 33870903, 47, EquipoDeViaje.DeMano, 11, true, false, Clase.Turista, false));
 
             return ListaDePasajeros;
         }
 
         public static List<Aeronave> AeronavesHardcodeados()
         {
-            listaDeAeronaves.Add(new Aeronave(30, 2, false, true, 100));
-            listaDeAeronaves.Add(new Aeronave(45, 1, true, false, 200));
-            listaDeAeronaves.Add(new Aeronave(40, 1, true, false, 175));
+            //ListaDeAeronaves.Clear();
 
-            return listaDeAeronaves;
+            ListaDeAeronaves.Add(new Aeronave(400, 2, false, true, 2000));
+            ListaDeAeronaves.Add(new Aeronave(350, 1, true, false, 3500));
+            ListaDeAeronaves.Add(new Aeronave(600, 1, true, false, 5000));
+
+            return ListaDeAeronaves;
         }
 
         public static List<Vuelo> VuelosHardcodeados()
         {
-            List<Aeronave> aviones = AeronavesHardcodeados();
+            //List<Aeronave> aviones = AeronavesHardcodeados();
             //List<PreferenciasPasajero> pasajeros = PasajerosHardcodeados();
 
-            ListaDeVuelos.Add(new Vuelo(new DateTime(2023, 4, 30), aviones[0], Clase.Turista, DestinoNacional.Iguazu.ToString(), DestinoNacional.Salta.ToString()));
-            ListaDeVuelos.Add(new Vuelo(new DateTime(2023, 5, 30), aviones[0], Clase.Premium, DestinoNacional.Tucuman.ToString(), DestinoNacional.Neuquen.ToString()));
-            ListaDeVuelos.Add(new Vuelo(new DateTime(2023, 6, 30), aviones[1], Clase.Turista, DestinoNacional.Neuquen.ToString(), DestinoNacional.Cordoba.ToString()));
-            ListaDeVuelos.Add(new Vuelo(new DateTime(2023, 7, 30), aviones[1], Clase.Premium,  "sarasa", DestinoInternacional.Acapulco.ToString()));
-            ListaDeVuelos.Add(new Vuelo(new DateTime(2023, 8, 30), aviones[2], Clase.Turista, "buenos aires", DestinoInternacional.Miami.ToString()));
-            ListaDeVuelos.Add(new Vuelo(new DateTime(2023, 4, 12), aviones[2], Clase.Turista, "dasd", DestinoInternacional.Roma.ToString()));
+            ListaDeVuelos.Add(new Vuelo(new DateTime(2023, 4, 30, 14, 5, 24), ListaDeAeronaves[0], DestinoNacional.Iguazu.ToString(), DestinoNacional.Salta.ToString()));
+            ListaDeVuelos.Add(new Vuelo(new DateTime(2023, 5, 30, 8, 30, 45), ListaDeAeronaves[0], DestinoNacional.Tucuman.ToString(), DestinoNacional.Neuquen.ToString()));
+            ListaDeVuelos.Add(new Vuelo(new DateTime(2023, 6, 30, 6, 37, 23), ListaDeAeronaves[1],  DestinoNacional.Neuquen.ToString(), DestinoNacional.Cordoba.ToString()));
+            ListaDeVuelos.Add(new Vuelo(new DateTime(2023, 7, 30, 21, 40, 21), ListaDeAeronaves[1], "sarasa", DestinoInternacional.Acapulco.ToString()));
+            ListaDeVuelos.Add(new Vuelo(new DateTime(2023, 8, 30, 15, 30, 56), ListaDeAeronaves[2], "buenos aires", DestinoInternacional.Miami.ToString()));
+            ListaDeVuelos.Add(new Vuelo(new DateTime(2023, 4, 12, 12, 20, 26), ListaDeAeronaves[2], "dasd", DestinoInternacional.Roma.ToString()));
 
             ListaDeVuelos[0] += listaDePasajeros[0];
             ListaDeVuelos[0] += listaDePasajeros[1];

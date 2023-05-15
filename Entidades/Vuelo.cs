@@ -131,24 +131,29 @@ namespace Entidades
             return false;
         }
 
+        private float generarDuracionDelVuelo()
+        {
+            float ret = 0;
+            if (EsDestinoNacional())
+            {
+                Random horasRndN = new Random();
+                ret = (float)(horasRndN.NextDouble() * (4 - 2) + 2);
+            }
+            else if (EsDestinoInternacional())
+            {
+                Random horasRndI = new Random();
+                ret = (float)(horasRndI.NextDouble() * (12 - 8) + 8);
+            }
+
+            return ret;
+        }
+
         public float DuracionDelVuelo
         {
 
             get
             {
-                float ret = 0;
-                if (EsDestinoNacional())
-                {
-                    Random horasRndN = new Random();
-                    ret = (float)(horasRndN.NextDouble() * (4 - 2) + 2);
-                }
-                else if (EsDestinoInternacional())
-                {
-                    Random horasRndI = new Random();
-                    ret = (float)(horasRndI.NextDouble() * (12 - 8) + 8);
-                }
-
-                return ret;
+                return duracionDelVuelo;
             }
             set
             {
@@ -251,7 +256,7 @@ namespace Entidades
             listaPasajeros = new List<PreferenciasPasajero>();
         }
 
-        public Vuelo(DateTime fechaDeVuelo, Aeronave avion, Clase clase, string ciudadDePartida, string ciudadDestino)
+        public Vuelo(DateTime fechaDeVuelo, Aeronave avion, string ciudadDePartida, string ciudadDestino)
         : this()
         {
             this.idVuelo = ultimoId;
@@ -264,7 +269,7 @@ namespace Entidades
             this.ciudadDePartida = ciudadDePartida;
             this.ciudadDestino = ciudadDestino;
             //this.costoClase = CostoClase;
-            this.duracionDelVuelo = DuracionDelVuelo;
+            this.duracionDelVuelo = generarDuracionDelVuelo();
             this.costoTurista = CostoTurista;
             this.costoPremium = CostoPremium;
                 

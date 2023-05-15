@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -97,6 +98,22 @@ namespace Entidades
             catch (Exception ex)
             {
                 return null;
+            }
+            return null;
+        }
+
+        public static List<Aeronave> DeserializarAeronaves()
+        {
+            if (File.Exists("simulacionAeronaves.Json"))
+            {
+                using (StreamReader sr = new StreamReader("simulacionAeronaves.Json"))
+                {
+                    string json_str = sr.ReadToEnd();
+
+                    //List<PreferenciasPasajero> lista = JsonConvert.DeserializeObject<List<PreferenciasPasajero>>(json_str);
+                    Sistema.ListaDeAeronaves = JsonConvert.DeserializeObject<List<Aeronave>>(json_str);
+                    return Sistema.ListaDeAeronaves;
+                }
             }
             return null;
         }

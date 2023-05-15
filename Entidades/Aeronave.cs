@@ -20,7 +20,7 @@ namespace Entidades
             return random.Next(10000000, 99999999);
         }
 
-        private string GenerarRandomMatricula()
+        public static string GenerarRandomMatricula()
         {
             string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
             string numeros = "0123456789";
@@ -44,7 +44,6 @@ namespace Entidades
         {
             if (lastMatricula == "" || lastMatricula == matricula)
             {
-                // No se ha generado una matrícula para esta aeronave aún, así que generamos una nueva
                 lastMatricula = GenerarRandomMatricula();
                 matricula = lastMatricula;
             }
@@ -79,10 +78,10 @@ namespace Entidades
         //}
 
         public int CantidadDeAsientos { get => cantidadDeAsientos; set => cantidadDeAsientos = value; }
-        public int CantidadDeBanios { get => cantidadDeBanios; }
-        public bool ServicioDeInternet { get => servicioDeInternet; }
-        public bool OfreceComida { get => ofreceComida; }
-        public int CapacidadBodega { get => capacidadBodega; }
+        public int CantidadDeBanios { get => cantidadDeBanios; set => cantidadDeBanios = value; }
+        public bool ServicioDeInternet { get => servicioDeInternet; set => servicioDeInternet = value; }
+        public bool OfreceComida { get => ofreceComida; set => ofreceComida = value; }
+        public int CapacidadBodega { get => capacidadBodega; set => capacidadBodega = value; }
 
         private Aeronave()
         {
@@ -113,19 +112,19 @@ namespace Entidades
             return sb.ToString();
         }
 
-        //public static bool operator ==(Aeronave avion1, Aeronave avion2)
-        //{
-        //    if(avion1 is not null && avion2 is not null)
-        //    { 
-        //        return (avion1.matricula == avion2.matricula);
-        //    }
-        //    return false;
-        //}
+        public static bool operator ==(Aeronave avion1, Aeronave avion2)
+        {
+            if (avion1 is not null && avion2 is not null)
+            {
+                return (avion1.matricula == avion2.matricula);
+            }
+            return false;
+        }
 
-        //public static bool operator !=(Aeronave avion1, Aeronave avion2)
-        //{
-        //    return !(avion1.matricula == avion2.matricula);
-        //}
+        public static bool operator !=(Aeronave avion1, Aeronave avion2)
+        {
+            return !(avion1.matricula == avion2.matricula);
+        }
 
     }
 }

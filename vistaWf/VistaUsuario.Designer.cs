@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VistaUsuario));
             panel1 = new Panel();
+            btnCerrarSesion = new Button();
             labelCambiar = new Label();
             label1 = new Label();
             pictureBox1 = new PictureBox();
@@ -48,6 +49,7 @@
             // panel1
             // 
             panel1.BackColor = Color.LightGray;
+            panel1.Controls.Add(btnCerrarSesion);
             panel1.Controls.Add(labelCambiar);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(pictureBox1);
@@ -56,6 +58,19 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(983, 58);
             panel1.TabIndex = 0;
+            // 
+            // btnCerrarSesion
+            // 
+            btnCerrarSesion.BackColor = Color.LightGray;
+            btnCerrarSesion.BackgroundImage = (Image)resources.GetObject("btnCerrarSesion.BackgroundImage");
+            btnCerrarSesion.FlatAppearance.BorderSize = 0;
+            btnCerrarSesion.FlatStyle = FlatStyle.Flat;
+            btnCerrarSesion.Location = new Point(918, 16);
+            btnCerrarSesion.Name = "btnCerrarSesion";
+            btnCerrarSesion.Size = new Size(33, 31);
+            btnCerrarSesion.TabIndex = 4;
+            btnCerrarSesion.UseVisualStyleBackColor = false;
+            btnCerrarSesion.Click += btnCerrarSesion_Click;
             // 
             // labelCambiar
             // 
@@ -189,5 +204,6 @@
         protected TabPage tabPage1;
         protected TabControl tabControl1;
         protected TabPage tabPage3;
+        protected Button btnCerrarSesion;
     }
 }

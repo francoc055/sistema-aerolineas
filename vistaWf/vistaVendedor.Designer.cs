@@ -53,7 +53,6 @@
             DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(vistaVendedor));
             tableLayoutPanel1 = new TableLayoutPanel();
             dataGridView1 = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
@@ -164,9 +163,6 @@
             btnCrearPasajero = new Button();
             txtNombre = new TextBox();
             txtApellido = new TextBox();
-            txtDni = new TextBox();
-            txtEdad = new TextBox();
-            txtPesoValija = new TextBox();
             cbEquipaje = new ComboBox();
             cbComida = new ComboBox();
             cbInternet = new ComboBox();
@@ -177,7 +173,14 @@
             label5 = new Label();
             txtFiltrar = new TextBox();
             label6 = new Label();
-            btnCerrarSesion = new Button();
+            numericUpDownDni = new NumericUpDown();
+            numericUpDownValija = new NumericUpDown();
+            label7 = new Label();
+            label8 = new Label();
+            label9 = new Label();
+            label10 = new Label();
+            label11 = new Label();
+            numericUpDownEdad = new NumericUpDown();
             panel1.SuspendLayout();
             tabPage4.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -205,17 +208,25 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewVuelosVender).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCrudPasajero).BeginInit();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownDni).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownValija).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownEdad).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Controls.Add(btnCerrarSesion);
-            panel1.Size = new Size(925, 58);
-            panel1.Controls.SetChildIndex(labelCambiar, 0);
-            panel1.Controls.SetChildIndex(btnCerrarSesion, 0);
+            panel1.Size = new Size(992, 58);
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(numericUpDownEdad);
+            tabPage4.Controls.Add(label11);
+            tabPage4.Controls.Add(label10);
+            tabPage4.Controls.Add(label9);
+            tabPage4.Controls.Add(label8);
+            tabPage4.Controls.Add(label7);
+            tabPage4.Controls.Add(numericUpDownValija);
+            tabPage4.Controls.Add(numericUpDownDni);
             tabPage4.Controls.Add(txtFiltrar);
             tabPage4.Controls.Add(label6);
             tabPage4.Controls.Add(label5);
@@ -226,9 +237,6 @@
             tabPage4.Controls.Add(cbInternet);
             tabPage4.Controls.Add(cbComida);
             tabPage4.Controls.Add(cbEquipaje);
-            tabPage4.Controls.Add(txtPesoValija);
-            tabPage4.Controls.Add(txtEdad);
-            tabPage4.Controls.Add(txtDni);
             tabPage4.Controls.Add(txtApellido);
             tabPage4.Controls.Add(txtNombre);
             tabPage4.Controls.Add(groupBox1);
@@ -237,15 +245,16 @@
             // tabPage2
             // 
             tabPage2.Controls.Add(dataGridViewEstadisticas);
+            tabPage2.Size = new Size(984, 453);
             // 
             // tabPage1
             // 
             tabPage1.Controls.Add(tableLayoutPanel5);
-            tabPage1.Size = new Size(917, 453);
+            tabPage1.Size = new Size(984, 453);
             // 
             // tabControl1
             // 
-            tabControl1.Size = new Size(925, 481);
+            tabControl1.Size = new Size(992, 481);
             tabControl1.Selecting += tabControl1_Selecting;
             // 
             // tabPage3
@@ -253,6 +262,10 @@
             tabPage3.Controls.Add(btnAgregarVuelo);
             tabPage3.Controls.Add(tableLayoutPanel7);
             tabPage3.Controls.Add(tableLayoutPanel6);
+            // 
+            // btnCerrarSesion
+            // 
+            btnCerrarSesion.FlatAppearance.BorderSize = 0;
             // 
             // tableLayoutPanel1
             // 
@@ -771,7 +784,7 @@
             tableLayoutPanel5.RowCount = 1;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel5.Size = new Size(911, 447);
+            tableLayoutPanel5.Size = new Size(978, 447);
             tableLayoutPanel5.TabIndex = 0;
             // 
             // dataGridViewInfoVuelos
@@ -804,7 +817,7 @@
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
             dataGridViewInfoVuelos.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dataGridViewInfoVuelos.RowTemplate.Height = 25;
-            dataGridViewInfoVuelos.Size = new Size(449, 441);
+            dataGridViewInfoVuelos.Size = new Size(483, 441);
             dataGridViewInfoVuelos.TabIndex = 0;
             dataGridViewInfoVuelos.SelectionChanged += dataGridViewInfoVuelos_SelectionChanged;
             // 
@@ -860,7 +873,7 @@
             dataGridViewInfoPasajero.Columns.AddRange(new DataGridViewColumn[] { Column28, Column29, Column30, Column31 });
             dataGridViewInfoPasajero.Dock = DockStyle.Fill;
             dataGridViewInfoPasajero.EnableHeadersVisualStyles = false;
-            dataGridViewInfoPasajero.Location = new Point(458, 3);
+            dataGridViewInfoPasajero.Location = new Point(492, 3);
             dataGridViewInfoPasajero.Name = "dataGridViewInfoPasajero";
             dataGridViewInfoPasajero.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -872,7 +885,7 @@
             dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
             dataGridViewInfoPasajero.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dataGridViewInfoPasajero.RowTemplate.Height = 25;
-            dataGridViewInfoPasajero.Size = new Size(450, 441);
+            dataGridViewInfoPasajero.Size = new Size(483, 441);
             dataGridViewInfoPasajero.TabIndex = 1;
             // 
             // Column28
@@ -925,7 +938,7 @@
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
             dataGridViewEstadisticas.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewEstadisticas.RowTemplate.Height = 25;
-            dataGridViewEstadisticas.Size = new Size(969, 240);
+            dataGridViewEstadisticas.Size = new Size(978, 240);
             dataGridViewEstadisticas.TabIndex = 0;
             // 
             // Column32
@@ -1219,7 +1232,7 @@
             btnNuevo.FlatStyle = FlatStyle.Flat;
             btnNuevo.Font = new Font("Modern No. 20", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnNuevo.ForeColor = Color.White;
-            btnNuevo.Location = new Point(33, 172);
+            btnNuevo.Location = new Point(33, 173);
             btnNuevo.Name = "btnNuevo";
             btnNuevo.Size = new Size(75, 23);
             btnNuevo.TabIndex = 3;
@@ -1234,7 +1247,7 @@
             btnEliminarPasajero.FlatStyle = FlatStyle.Flat;
             btnEliminarPasajero.Font = new Font("Modern No. 20", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnEliminarPasajero.ForeColor = Color.White;
-            btnEliminarPasajero.Location = new Point(33, 127);
+            btnEliminarPasajero.Location = new Point(33, 129);
             btnEliminarPasajero.Name = "btnEliminarPasajero";
             btnEliminarPasajero.Size = new Size(75, 23);
             btnEliminarPasajero.TabIndex = 2;
@@ -1249,9 +1262,9 @@
             btnModificarPasajero.FlatStyle = FlatStyle.Flat;
             btnModificarPasajero.Font = new Font("Modern No. 20", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnModificarPasajero.ForeColor = Color.White;
-            btnModificarPasajero.Location = new Point(33, 82);
+            btnModificarPasajero.Location = new Point(28, 82);
             btnModificarPasajero.Name = "btnModificarPasajero";
-            btnModificarPasajero.Size = new Size(75, 23);
+            btnModificarPasajero.Size = new Size(80, 23);
             btnModificarPasajero.TabIndex = 1;
             btnModificarPasajero.Text = "Modificar";
             btnModificarPasajero.UseVisualStyleBackColor = true;
@@ -1288,30 +1301,6 @@
             txtApellido.PlaceholderText = "Apellido...";
             txtApellido.Size = new Size(100, 23);
             txtApellido.TabIndex = 3;
-            // 
-            // txtDni
-            // 
-            txtDni.Location = new Point(212, 174);
-            txtDni.Name = "txtDni";
-            txtDni.PlaceholderText = "Dni...";
-            txtDni.Size = new Size(100, 23);
-            txtDni.TabIndex = 4;
-            // 
-            // txtEdad
-            // 
-            txtEdad.Location = new Point(355, 47);
-            txtEdad.Name = "txtEdad";
-            txtEdad.PlaceholderText = "Edad...";
-            txtEdad.Size = new Size(100, 23);
-            txtEdad.TabIndex = 5;
-            // 
-            // txtPesoValija
-            // 
-            txtPesoValija.Location = new Point(355, 174);
-            txtPesoValija.Name = "txtPesoValija";
-            txtPesoValija.PlaceholderText = "Peso valija...";
-            txtPesoValija.Size = new Size(100, 23);
-            txtPesoValija.TabIndex = 6;
             // 
             // cbEquipaje
             // 
@@ -1400,24 +1389,83 @@
             label6.TabIndex = 15;
             label6.Text = "Filtrar por DNI";
             // 
-            // btnCerrarSesion
+            // numericUpDownDni
             // 
-            btnCerrarSesion.BackColor = Color.LightGray;
-            btnCerrarSesion.BackgroundImage = (Image)resources.GetObject("btnCerrarSesion.BackgroundImage");
-            btnCerrarSesion.FlatAppearance.BorderSize = 0;
-            btnCerrarSesion.FlatStyle = FlatStyle.Flat;
-            btnCerrarSesion.Location = new Point(860, 16);
-            btnCerrarSesion.Name = "btnCerrarSesion";
-            btnCerrarSesion.Size = new Size(33, 31);
-            btnCerrarSesion.TabIndex = 3;
-            btnCerrarSesion.UseVisualStyleBackColor = false;
-            btnCerrarSesion.Click += btnCerrarSesion_Click;
+            numericUpDownDni.Location = new Point(212, 173);
+            numericUpDownDni.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
+            numericUpDownDni.Minimum = new decimal(new int[] { 10000000, 0, 0, 0 });
+            numericUpDownDni.Name = "numericUpDownDni";
+            numericUpDownDni.Size = new Size(100, 23);
+            numericUpDownDni.TabIndex = 17;
+            numericUpDownDni.Value = new decimal(new int[] { 10000000, 0, 0, 0 });
+            // 
+            // numericUpDownValija
+            // 
+            numericUpDownValija.Location = new Point(355, 173);
+            numericUpDownValija.Name = "numericUpDownValija";
+            numericUpDownValija.Size = new Size(100, 23);
+            numericUpDownValija.TabIndex = 18;
+            numericUpDownValija.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(239, 28);
+            label7.Name = "label7";
+            label7.Size = new Size(51, 15);
+            label7.TabIndex = 19;
+            label7.Text = "Nombre";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(239, 95);
+            label8.Name = "label8";
+            label8.Size = new Size(51, 15);
+            label8.TabIndex = 20;
+            label8.Text = "Apellido";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(387, 29);
+            label9.Name = "label9";
+            label9.Size = new Size(33, 15);
+            label9.TabIndex = 21;
+            label9.Text = "Edad";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(248, 153);
+            label10.Name = "label10";
+            label10.Size = new Size(25, 15);
+            label10.TabIndex = 22;
+            label10.Text = "Dni";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(375, 155);
+            label11.Name = "label11";
+            label11.Size = new Size(62, 15);
+            label11.TabIndex = 23;
+            label11.Text = "Peso valija";
+            // 
+            // numericUpDownEdad
+            // 
+            numericUpDownEdad.Location = new Point(355, 47);
+            numericUpDownEdad.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDownEdad.Name = "numericUpDownEdad";
+            numericUpDownEdad.Size = new Size(100, 23);
+            numericUpDownEdad.TabIndex = 24;
+            numericUpDownEdad.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // vistaVendedor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(925, 539);
+            ClientSize = new Size(992, 539);
             Name = "vistaVendedor";
             Text = "vistaVendedor";
             Load += vistaVendedor_Load_1;
@@ -1450,6 +1498,9 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewVuelosVender).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCrudPasajero).EndInit();
             groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)numericUpDownDni).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownValija).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownEdad).EndInit();
             ResumeLayout(false);
         }
 
@@ -1556,9 +1607,6 @@
         private Button btnModificarPasajero;
         private Button btnCrearPasajero;
         private Button btnEliminarPasajero;
-        private TextBox txtPesoValija;
-        private TextBox txtEdad;
-        private TextBox txtDni;
         private TextBox txtApellido;
         private TextBox txtNombre;
         private ComboBox cbEquipaje;
@@ -1578,6 +1626,13 @@
         private TextBox txtFiltrar;
         private Label label6;
         private Button btnNuevo;
-        private Button btnCerrarSesion;
+        private NumericUpDown numericUpDownDni;
+        private NumericUpDown numericUpDownValija;
+        private NumericUpDown numericUpDownEdad;
+        private Label label11;
+        private Label label10;
+        private Label label9;
+        private Label label8;
+        private Label label7;
     }
 }
