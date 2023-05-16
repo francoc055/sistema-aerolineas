@@ -206,6 +206,32 @@ namespace Entidades
             
         }
 
+        //public static decimal GananciasCabotaje(List<Vuelo> vuelo)
+        //{
+        //    decimal gananciaTotal = 0;
+        //    foreach (Vuelo item in vuelo)
+        //    {
+        //        if(item.CiudadDePartida == "Buenos Aires")
+        //        {
+                    
+        //        }
+        //    }            
+        //    return gananciaTotal;
+        //}
+
+        //public static decimal GananciasInternacional(Vuelo vuelo)
+        //{
+        //    decimal gananciaTotal = 0;
+        //    foreach (PreferenciasPasajero pasajero in vuelo.listaPasajeros)
+        //    {
+        //        if (pasajero.TipoClase == Clase.Premium)
+        //        {
+        //            gananciaTotal += vuelo.costoPremium;
+        //        }
+        //    }
+        //    return gananciaTotal;
+        //}
+
 
 
         private Vuelo()

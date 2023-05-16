@@ -40,7 +40,8 @@ namespace Vista
 
 
             CargarDataGridVuelo();
-            CargarDataEstadisticas();
+            CargarDataEstadisticasDestino();
+            CargarEstadisticasOrdenFact();
             CargarDataVenderViaje();
 
 
@@ -54,10 +55,6 @@ namespace Vista
 
             btnModificarPasajero.Enabled = false;
             btnEliminarPasajero.Enabled = false;
-
-            //numericUpDownDni.Value = 1;
-            //numericUpDownValija.Value = 1;
-            //numericUpDownEdad.Value = 1;
 
         }
 
@@ -110,25 +107,29 @@ namespace Vista
                 dataGridViewInfoPasajero.Rows.Clear();
 
                 DataGridViewRow row = dataGridViewInfoVuelos.SelectedRows[0];
-                int valorCeldaIdVuelo = (int)row.Cells[6].Value;
-
-                foreach (Vuelo item in Sistema.ListaDeVuelos)
+                if (row.Cells[6].Value != null)
                 {
-                    if (item.IdVuelo == valorCeldaIdVuelo)
-                    {
-                        foreach (Pasajero pasajero in item.ListaPasajeros)
-                        {
+                    int valorCeldaIdVuelo = (int)row.Cells[6].Value;
 
-                            DataGridViewRow filaPasajero = new DataGridViewRow();
-                            filaPasajero.CreateCells(dataGridViewInfoPasajero);
-                            filaPasajero.Cells[0].Value = pasajero.Nombre;
-                            filaPasajero.Cells[1].Value = pasajero.Apellido;
-                            filaPasajero.Cells[2].Value = pasajero.Edad;
-                            filaPasajero.Cells[3].Value = pasajero.Dni;
-                            dataGridViewInfoPasajero.Rows.Add(filaPasajero);
+                    foreach (Vuelo item in Sistema.ListaDeVuelos)
+                    {
+                        if (item.IdVuelo == valorCeldaIdVuelo)
+                        {
+                            foreach (Pasajero pasajero in item.ListaPasajeros)
+                            {
+
+                                DataGridViewRow filaPasajero = new DataGridViewRow();
+                                filaPasajero.CreateCells(dataGridViewInfoPasajero);
+                                filaPasajero.Cells[0].Value = pasajero.Nombre;
+                                filaPasajero.Cells[1].Value = pasajero.Apellido;
+                                filaPasajero.Cells[2].Value = pasajero.Edad;
+                                filaPasajero.Cells[3].Value = pasajero.Dni;
+                                dataGridViewInfoPasajero.Rows.Add(filaPasajero);
+                            }
                         }
                     }
                 }
+
             }
         }
         //----------Listar viajes------------//
@@ -136,7 +137,7 @@ namespace Vista
 
 
         //----------Estadisticas historicas------------//
-        private void CargarDataEstadisticas()
+        private void CargarDataEstadisticasDestino()
         {
             dataGridViewEstadisticas.Rows.Clear();
             bool flag = false;
@@ -146,19 +147,19 @@ namespace Vista
                 {
                     DataGridViewRow filaVueloEstadisticas = new DataGridViewRow();
                     filaVueloEstadisticas.CreateCells(dataGridViewEstadisticas);
-                    filaVueloEstadisticas.Cells[0].Value = item.Avion.Matricula;
-                    filaVueloEstadisticas.Cells[1].Value = item.TotalRecaudado;
-                    filaVueloEstadisticas.Cells[2].Value = item.ListaPasajeros.Count;
+                    //filaVueloEstadisticas.Cells[0].Value = item.Avion.Matricula;
+                    filaVueloEstadisticas.Cells[0].Value = item.TotalRecaudado;
+                    //filaVueloEstadisticas.Cells[2].Value = item.ListaPasajeros.Count;
                     if (!flag)
                     {
-                        filaVueloEstadisticas.Cells[3].Value = DestinoMasElegido();
+                        filaVueloEstadisticas.Cells[1].Value = DestinoMasElegido();
                     }
                     dataGridViewEstadisticas.Rows.Add(filaVueloEstadisticas);
                     flag = true;
+                    break;
                 }
             }
         }
-
 
 
         private string DestinoMasElegido()
@@ -179,6 +180,11 @@ namespace Vista
                         if (vuelo.CiudadDestino != item.Key)
                         {
                             destinosContador.Add(vuelo.CiudadDestino, vuelo.ListaPasajeros.Count);
+                            break;
+                        }
+                        else if (vuelo.CiudadDestino == item.Key)
+                        {
+                            destinosContador[item.Key] += vuelo.ListaPasajeros.Count;
                             break;
                         }
                     }
@@ -208,6 +214,39 @@ namespace Vista
             }
 
             return destino;
+        }
+
+        //cargo datagrid ordenando descendiente los vuelos ya realizados
+        private void CargarEstadisticasOrdenFact()
+        {
+            List<Vuelo> listaOrdenada = new List<Vuelo>();
+            foreach (Vuelo item in Sistema.ListaDeVuelos)
+            {
+                if (item.FechaDeVuelo.Year <= DateTime.Now.Year && item.FechaDeVuelo.Month < DateTime.Now.Month)
+                {
+                    listaOrdenada.Add(item);
+                }
+            }
+
+            if (listaOrdenada is not null)
+            {
+                listaOrdenada.Sort(Comparacion);
+                foreach (Vuelo item in listaOrdenada)
+                {
+                    DataGridViewRow filaVueloEstadisticas = new DataGridViewRow();
+                    filaVueloEstadisticas.CreateCells(dataGridViewOrdFacturacion);
+                    filaVueloEstadisticas.Cells[0].Value = item.TotalRecaudado;
+                    filaVueloEstadisticas.Cells[1].Value = item.CiudadDestino;
+                    //filaVueloEstadisticas.Cells[2].Value = Vuelo.GananciasCabotaje();
+                    //filaVueloEstadisticas.Cells[3].Value = Vuelo.GananciasInternacional(item);
+                    dataGridViewOrdFacturacion.Rows.Add(filaVueloEstadisticas);
+                }
+            }
+        }
+
+        private int Comparacion(Vuelo a, Vuelo b)
+        {
+            return (int)(a.TotalRecaudado - b.TotalRecaudado);
         }
         //----------Estadisticas historicas------------//
 
@@ -244,53 +283,52 @@ namespace Vista
                 dataGridViewVuelosVender.Rows.Clear();
                 DataGridViewRow row = dataGridViewPasajerosSinVuelo.SelectedRows[0];
 
-                bool valorCeldaInternet = (bool)row.Cells[2].Value;
-                bool valorCeldaComida = (bool)row.Cells[3].Value;
-                float valorCeldaPesoEquipaje = (float)row.Cells[5].Value;
-                Clase valorCeldaClase = (Clase)row.Cells[6].Value;
-
-
-                bool flag = false;
-                foreach (Vuelo v in Sistema.ListaDeVuelos)
+                if (row.Cells[2].Value != null)
                 {
-                    float diferenciaPeso = v.Avion.CapacidadBodega - valorCeldaPesoEquipaje;
-                    if (Clase.Turista.ToString() == valorCeldaClase.ToString())
-                    {
-                        cantAsientosTurista = v.CantidadAsientoClaseTurista;
-                        cantAsientosTurista -= 1;
-                    }
-                    else if (Clase.Premium.ToString() == valorCeldaClase.ToString())
-                    {
-                        cantAsientosPremium = v.CantidadAsientoClasePremium;
-                        cantAsientosPremium -= 1;
-                    }
+                    bool valorCeldaInternet = (bool)row.Cells[2].Value;
+                    bool valorCeldaComida = (bool)row.Cells[3].Value;
+                    float valorCeldaPesoEquipaje = (float)row.Cells[5].Value;
+                    Clase valorCeldaClase = (Clase)row.Cells[6].Value;
 
-                    if (v.Avion.CapacidadBodega > valorCeldaPesoEquipaje && diferenciaPeso >= 0)
+
+                    bool flag = false;
+                    foreach (Vuelo v in Sistema.ListaDeVuelos)
                     {
-                        if (valorCeldaInternet == v.Avion.ServicioDeInternet && valorCeldaComida == v.Avion.OfreceComida && (cantAsientosTurista > 0 || cantAsientosPremium > 0))
+                        float diferenciaPeso = v.Avion.CapacidadBodega - valorCeldaPesoEquipaje;
+                        if (Clase.Turista.ToString() == valorCeldaClase.ToString())
                         {
-                            DataGridViewRow newRow = new DataGridViewRow();
-                            newRow.CreateCells(dataGridViewVuelosVender);
-                            newRow.Cells[0].Value = v.Avion.Matricula;
-                            newRow.Cells[1].Value = v.CiudadDePartida;
-                            newRow.Cells[2].Value = v.CiudadDestino;
-                            newRow.Cells[3].Value = v.FechaDeVuelo;
-                            newRow.Cells[4].Value = v.CostoTurista;
-                            newRow.Cells[5].Value = v.CostoPremium;
-                            newRow.Cells[6].Value = v.IdVuelo;
-                            newRow.Cells[7].Value = v.Avion.CapacidadBodega;
-                            newRow.Cells[8].Value = v.AsientosDisponibles;
+                            cantAsientosTurista = v.CantidadAsientoClaseTurista;
+                            cantAsientosTurista -= 1;
+                        }
+                        else if (Clase.Premium.ToString() == valorCeldaClase.ToString())
+                        {
+                            cantAsientosPremium = v.CantidadAsientoClasePremium;
+                            cantAsientosPremium -= 1;
+                        }
+
+                        if (v.Avion.CapacidadBodega > valorCeldaPesoEquipaje && diferenciaPeso >= 0)
+                        {
+                            if (valorCeldaInternet == v.Avion.ServicioDeInternet && valorCeldaComida == v.Avion.OfreceComida && (cantAsientosTurista > 0 || cantAsientosPremium > 0))
+                            {
+                                DataGridViewRow newRow = new DataGridViewRow();
+                                newRow.CreateCells(dataGridViewVuelosVender);
+                                newRow.Cells[0].Value = v.Avion.Matricula;
+                                newRow.Cells[1].Value = v.CiudadDePartida;
+                                newRow.Cells[2].Value = v.CiudadDestino;
+                                newRow.Cells[3].Value = v.FechaDeVuelo;
+                                newRow.Cells[4].Value = v.CostoTurista;
+                                newRow.Cells[5].Value = v.CostoPremium;
+                                newRow.Cells[6].Value = v.IdVuelo;
+                                newRow.Cells[7].Value = v.Avion.CapacidadBodega;
+                                newRow.Cells[8].Value = v.AsientosDisponibles;
 
 
-                            dataGridViewVuelosVender.Rows.Add(newRow);
+                                dataGridViewVuelosVender.Rows.Add(newRow);
+                            }
                         }
                     }
-
-
                 }
-
             }
-
         }
 
 
@@ -326,7 +364,7 @@ namespace Vista
                     dataGridViewPasajerosSinVuelo.Rows.Clear();
                     CargarDataGridVuelo();
                     CargarDataVenderViaje();
-                    CargarDataEstadisticas();
+                    CargarDataEstadisticasDestino();
                     Serializador.SerializarPasajeros(Sistema.ListaDePasajeros);
                     Serializador.SerializarVuelos(Sistema.ListaDeVuelos);
                 }
@@ -674,7 +712,6 @@ namespace Vista
         {
             base.btnCerrarSesion_Click(sender, e);
         }
-
 
 
     }
