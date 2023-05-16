@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             tableLayoutPanel1 = new TableLayoutPanel();
             dataGridViewAeronave = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
@@ -63,23 +63,31 @@
             Column10 = new DataGridViewTextBoxColumn();
             Column11 = new DataGridViewTextBoxColumn();
             Column12 = new DataGridViewTextBoxColumn();
-            Column13 = new DataGridViewTextBoxColumn();
             Column14 = new DataGridViewTextBoxColumn();
             Column15 = new DataGridViewTextBoxColumn();
             Column16 = new DataGridViewTextBoxColumn();
             Column17 = new DataGridViewTextBoxColumn();
+            Column13 = new DataGridViewTextBoxColumn();
+            Column18 = new DataGridViewTextBoxColumn();
             groupBox1 = new GroupBox();
             btnNuevoVuelo = new Button();
             btnEliminarVuelo = new Button();
             btnModificarVuelo = new Button();
             btnCrearVuelo = new Button();
-            cbOrigen = new ComboBox();
+            cbOrigenNacional = new ComboBox();
             cbAvion = new ComboBox();
             dateTimePickerFecha = new DateTimePicker();
-            cbDestino = new ComboBox();
-            label7 = new Label();
-            label8 = new Label();
             label9 = new Label();
+            radioButton1 = new RadioButton();
+            radioButton2 = new RadioButton();
+            groupBox3 = new GroupBox();
+            cbOrigenInternacional = new ComboBox();
+            cbDestino = new ComboBox();
+            groupBox4 = new GroupBox();
+            txtFiltrarMatricula = new TextBox();
+            label7 = new Label();
+            txtFiltrarVuelos = new TextBox();
+            label10 = new Label();
             panel1.SuspendLayout();
             tabPage6.SuspendLayout();
             tabPage5.SuspendLayout();
@@ -93,6 +101,8 @@
             tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewVuelos).BeginInit();
             groupBox1.SuspendLayout();
+            groupBox3.SuspendLayout();
+            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -101,6 +111,8 @@
             // 
             // tabPage6
             // 
+            tabPage6.Controls.Add(label7);
+            tabPage6.Controls.Add(txtFiltrarMatricula);
             tabPage6.Controls.Add(numericUpDownBodega);
             tabPage6.Controls.Add(numericUpDownBaños);
             tabPage6.Controls.Add(numericUpDownAsientos);
@@ -113,16 +125,17 @@
             tabPage6.Controls.Add(cbInternet);
             tabPage6.Controls.Add(groupBox2);
             tabPage6.Controls.Add(tableLayoutPanel1);
+            tabPage6.Size = new Size(958, 433);
             // 
             // tabPage5
             // 
+            tabPage5.Controls.Add(label10);
+            tabPage5.Controls.Add(txtFiltrarVuelos);
+            tabPage5.Controls.Add(groupBox4);
+            tabPage5.Controls.Add(groupBox3);
             tabPage5.Controls.Add(label9);
-            tabPage5.Controls.Add(label8);
-            tabPage5.Controls.Add(label7);
-            tabPage5.Controls.Add(cbDestino);
             tabPage5.Controls.Add(dateTimePickerFecha);
             tabPage5.Controls.Add(cbAvion);
-            tabPage5.Controls.Add(cbOrigen);
             tabPage5.Controls.Add(groupBox1);
             tabPage5.Controls.Add(tableLayoutPanel2);
             tabPage5.Size = new Size(958, 433);
@@ -147,12 +160,12 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Controls.Add(dataGridViewAeronave, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Bottom;
-            tableLayoutPanel1.Location = new Point(3, 223);
+            tableLayoutPanel1.Location = new Point(3, 229);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(969, 201);
+            tableLayoutPanel1.Size = new Size(952, 201);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // dataGridViewAeronave
@@ -160,14 +173,14 @@
             dataGridViewAeronave.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewAeronave.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dataGridViewAeronave.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.RoyalBlue;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dataGridViewAeronave.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.RoyalBlue;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewAeronave.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewAeronave.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewAeronave.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5, Column6 });
             dataGridViewAeronave.Dock = DockStyle.Fill;
@@ -175,16 +188,16 @@
             dataGridViewAeronave.Location = new Point(3, 3);
             dataGridViewAeronave.Name = "dataGridViewAeronave";
             dataGridViewAeronave.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.RoyalBlue;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dataGridViewAeronave.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.RoyalBlue;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridViewAeronave.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewAeronave.RowTemplate.Height = 25;
-            dataGridViewAeronave.Size = new Size(963, 195);
+            dataGridViewAeronave.Size = new Size(946, 195);
             dataGridViewAeronave.TabIndex = 0;
             dataGridViewAeronave.CellContentClick += dataGridViewAeronave_CellContentClick;
             // 
@@ -297,7 +310,7 @@
             // 
             cbInternet.FormattingEnabled = true;
             cbInternet.Items.AddRange(new object[] { "True", "False" });
-            cbInternet.Location = new Point(388, 49);
+            cbInternet.Location = new Point(506, 77);
             cbInternet.Name = "cbInternet";
             cbInternet.Size = new Size(100, 23);
             cbInternet.TabIndex = 8;
@@ -307,7 +320,7 @@
             cbComida.AutoCompleteCustomSource.AddRange(new string[] { "True", "False" });
             cbComida.FormattingEnabled = true;
             cbComida.Items.AddRange(new object[] { "True", "False" });
-            cbComida.Location = new Point(388, 115);
+            cbComida.Location = new Point(644, 77);
             cbComida.Name = "cbComida";
             cbComida.Size = new Size(100, 23);
             cbComida.TabIndex = 9;
@@ -315,7 +328,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(412, 31);
+            label2.Location = new Point(531, 59);
             label2.Name = "label2";
             label2.Size = new Size(48, 15);
             label2.TabIndex = 12;
@@ -324,7 +337,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(412, 97);
+            label3.Location = new Point(667, 59);
             label3.Name = "label3";
             label3.Size = new Size(49, 15);
             label3.TabIndex = 13;
@@ -333,7 +346,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(257, 30);
+            label4.Location = new Point(256, 60);
             label4.Name = "label4";
             label4.Size = new Size(52, 15);
             label4.TabIndex = 14;
@@ -342,7 +355,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(257, 97);
+            label5.Location = new Point(396, 60);
             label5.Name = "label5";
             label5.Size = new Size(39, 15);
             label5.TabIndex = 15;
@@ -351,7 +364,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(330, 157);
+            label6.Location = new Point(800, 59);
             label6.Name = "label6";
             label6.Size = new Size(47, 15);
             label6.TabIndex = 16;
@@ -359,7 +372,7 @@
             // 
             // numericUpDownAsientos
             // 
-            numericUpDownAsientos.Location = new Point(237, 50);
+            numericUpDownAsientos.Location = new Point(239, 78);
             numericUpDownAsientos.Maximum = new decimal(new int[] { 850, 0, 0, 0 });
             numericUpDownAsientos.Minimum = new decimal(new int[] { 150, 0, 0, 0 });
             numericUpDownAsientos.Name = "numericUpDownAsientos";
@@ -369,7 +382,7 @@
             // 
             // numericUpDownBaños
             // 
-            numericUpDownBaños.Location = new Point(237, 116);
+            numericUpDownBaños.Location = new Point(373, 78);
             numericUpDownBaños.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             numericUpDownBaños.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDownBaños.Name = "numericUpDownBaños";
@@ -379,7 +392,7 @@
             // 
             // numericUpDownBodega
             // 
-            numericUpDownBodega.Location = new Point(311, 177);
+            numericUpDownBodega.Location = new Point(785, 77);
             numericUpDownBodega.Maximum = new decimal(new int[] { 15000, 0, 0, 0 });
             numericUpDownBodega.Minimum = new decimal(new int[] { 1000, 0, 0, 0 });
             numericUpDownBodega.Name = "numericUpDownBodega";
@@ -407,32 +420,33 @@
             dataGridViewVuelos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewVuelos.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dataGridViewVuelos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.RoyalBlue;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dataGridViewVuelos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.RoyalBlue;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridViewVuelos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewVuelos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewVuelos.Columns.AddRange(new DataGridViewColumn[] { Column7, Column8, Column9, Column10, Column11, Column12, Column13, Column14, Column15, Column16, Column17 });
+            dataGridViewVuelos.Columns.AddRange(new DataGridViewColumn[] { Column7, Column8, Column9, Column10, Column11, Column12, Column14, Column15, Column16, Column17, Column13, Column18 });
             dataGridViewVuelos.Dock = DockStyle.Fill;
             dataGridViewVuelos.EnableHeadersVisualStyles = false;
             dataGridViewVuelos.Location = new Point(3, 3);
             dataGridViewVuelos.Name = "dataGridViewVuelos";
             dataGridViewVuelos.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.RoyalBlue;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dataGridViewVuelos.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.RoyalBlue;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dataGridViewVuelos.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewVuelos.RowTemplate.Height = 25;
             dataGridViewVuelos.Size = new Size(946, 198);
             dataGridViewVuelos.TabIndex = 0;
+            dataGridViewVuelos.CellContentClick += dataGridViewVuelos_CellContentClick;
             // 
             // Column7
             // 
@@ -461,13 +475,8 @@
             // 
             // Column12
             // 
-            Column12.HeaderText = "Asientos Premium";
+            Column12.HeaderText = "Asientos disponibles";
             Column12.Name = "Column12";
-            // 
-            // Column13
-            // 
-            Column13.HeaderText = "Asientos Turista";
-            Column13.Name = "Column13";
             // 
             // Column14
             // 
@@ -488,6 +497,16 @@
             // 
             Column17.HeaderText = "Cantidad de pasajeros";
             Column17.Name = "Column17";
+            // 
+            // Column13
+            // 
+            Column13.HeaderText = "Costo Neto premium";
+            Column13.Name = "Column13";
+            // 
+            // Column18
+            // 
+            Column18.HeaderText = "Costo Neto turista";
+            Column18.Name = "Column18";
             // 
             // groupBox1
             // 
@@ -516,6 +535,7 @@
             btnNuevoVuelo.TabIndex = 3;
             btnNuevoVuelo.Text = "Nuevo";
             btnNuevoVuelo.UseVisualStyleBackColor = true;
+            btnNuevoVuelo.Click += btnNuevoVuelo_Click;
             // 
             // btnEliminarVuelo
             // 
@@ -530,6 +550,7 @@
             btnEliminarVuelo.TabIndex = 2;
             btnEliminarVuelo.Text = "Eliminar";
             btnEliminarVuelo.UseVisualStyleBackColor = true;
+            btnEliminarVuelo.Click += btnEliminarVuelo_Click;
             // 
             // btnModificarVuelo
             // 
@@ -544,6 +565,7 @@
             btnModificarVuelo.TabIndex = 1;
             btnModificarVuelo.Text = "Modificar";
             btnModificarVuelo.UseVisualStyleBackColor = true;
+            btnModificarVuelo.Click += btnModificarVuelo_Click;
             // 
             // btnCrearVuelo
             // 
@@ -559,64 +581,139 @@
             btnCrearVuelo.TabIndex = 0;
             btnCrearVuelo.Text = "Crear";
             btnCrearVuelo.UseVisualStyleBackColor = false;
+            btnCrearVuelo.Click += btnCrearVuelo_Click;
             // 
-            // cbOrigen
+            // cbOrigenNacional
             // 
-            cbOrigen.FormattingEnabled = true;
-            cbOrigen.Location = new Point(203, 55);
-            cbOrigen.Name = "cbOrigen";
-            cbOrigen.Size = new Size(121, 23);
-            cbOrigen.TabIndex = 6;
+            cbOrigenNacional.FormattingEnabled = true;
+            cbOrigenNacional.Location = new Point(122, 23);
+            cbOrigenNacional.Name = "cbOrigenNacional";
+            cbOrigenNacional.Size = new Size(101, 23);
+            cbOrigenNacional.TabIndex = 6;
             // 
             // cbAvion
             // 
             cbAvion.FormattingEnabled = true;
-            cbAvion.Location = new Point(778, 55);
+            cbAvion.Location = new Point(157, 154);
             cbAvion.Name = "cbAvion";
             cbAvion.Size = new Size(121, 23);
             cbAvion.TabIndex = 7;
             // 
             // dateTimePickerFecha
             // 
-            dateTimePickerFecha.Location = new Point(517, 55);
+            dateTimePickerFecha.Location = new Point(352, 151);
+            dateTimePickerFecha.MaxDate = new DateTime(2024, 12, 31, 0, 0, 0, 0);
+            dateTimePickerFecha.MinDate = new DateTime(2022, 1, 1, 0, 0, 0, 0);
             dateTimePickerFecha.Name = "dateTimePickerFecha";
             dateTimePickerFecha.Size = new Size(216, 23);
             dateTimePickerFecha.TabIndex = 9;
             // 
-            // cbDestino
-            // 
-            cbDestino.FormattingEnabled = true;
-            cbDestino.Location = new Point(363, 55);
-            cbDestino.Name = "cbDestino";
-            cbDestino.Size = new Size(121, 23);
-            cbDestino.TabIndex = 10;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(238, 37);
-            label7.Name = "label7";
-            label7.Size = new Size(43, 15);
-            label7.TabIndex = 11;
-            label7.Text = "Origen";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(400, 37);
-            label8.Name = "label8";
-            label8.Size = new Size(47, 15);
-            label8.TabIndex = 12;
-            label8.Text = "Destino";
-            // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(818, 37);
+            label9.Location = new Point(195, 136);
             label9.Name = "label9";
             label9.Size = new Size(38, 15);
             label9.TabIndex = 13;
             label9.Text = "Avion";
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(29, 23);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(72, 19);
+            radioButton1.TabIndex = 15;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "Nacional";
+            radioButton1.UseVisualStyleBackColor = true;
+            radioButton1.CheckedChanged += radioButton1_CheckedChanged;
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(7, 61);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(94, 19);
+            radioButton2.TabIndex = 16;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "Internacional";
+            radioButton2.UseVisualStyleBackColor = true;
+            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(cbOrigenInternacional);
+            groupBox3.Controls.Add(cbOrigenNacional);
+            groupBox3.Controls.Add(radioButton1);
+            groupBox3.Controls.Add(radioButton2);
+            groupBox3.Location = new Point(157, 27);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(242, 100);
+            groupBox3.TabIndex = 18;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Origen";
+            // 
+            // cbOrigenInternacional
+            // 
+            cbOrigenInternacional.FormattingEnabled = true;
+            cbOrigenInternacional.Items.AddRange(new object[] { "Buenos Aires" });
+            cbOrigenInternacional.Location = new Point(122, 61);
+            cbOrigenInternacional.Name = "cbOrigenInternacional";
+            cbOrigenInternacional.Size = new Size(101, 23);
+            cbOrigenInternacional.TabIndex = 17;
+            // 
+            // cbDestino
+            // 
+            cbDestino.FormattingEnabled = true;
+            cbDestino.Location = new Point(30, 44);
+            cbDestino.Name = "cbDestino";
+            cbDestino.Size = new Size(110, 23);
+            cbDestino.TabIndex = 14;
+            // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(cbDestino);
+            groupBox4.Location = new Point(428, 27);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(166, 100);
+            groupBox4.TabIndex = 19;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Destino";
+            // 
+            // txtFiltrarMatricula
+            // 
+            txtFiltrarMatricula.Location = new Point(462, 185);
+            txtFiltrarMatricula.Name = "txtFiltrarMatricula";
+            txtFiltrarMatricula.Size = new Size(123, 23);
+            txtFiltrarMatricula.TabIndex = 20;
+            txtFiltrarMatricula.TextChanged += txtFiltrarMatricula_TextChanged;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(468, 167);
+            label7.Name = "label7";
+            label7.Size = new Size(111, 15);
+            label7.TabIndex = 21;
+            label7.Text = "Filtrar por matricula";
+            // 
+            // txtFiltrarVuelos
+            // 
+            txtFiltrarVuelos.Location = new Point(741, 108);
+            txtFiltrarVuelos.Name = "txtFiltrarVuelos";
+            txtFiltrarVuelos.Size = new Size(115, 23);
+            txtFiltrarVuelos.TabIndex = 20;
+            txtFiltrarVuelos.TextChanged += txtFiltrarVuelos_TextChanged;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(770, 90);
+            label10.Name = "label10";
+            label10.Size = new Size(44, 15);
+            label10.TabIndex = 21;
+            label10.Text = "label10";
             // 
             // vistaAdministrador
             // 
@@ -642,6 +739,9 @@
             tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewVuelos).EndInit();
             groupBox1.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
+            groupBox4.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -672,17 +772,6 @@
         private NumericUpDown numericUpDownAsientos;
         private TableLayoutPanel tableLayoutPanel2;
         private DataGridView dataGridViewVuelos;
-        private DataGridViewTextBoxColumn Column7;
-        private DataGridViewTextBoxColumn Column8;
-        private DataGridViewTextBoxColumn Column9;
-        private DataGridViewTextBoxColumn Column10;
-        private DataGridViewTextBoxColumn Column11;
-        private DataGridViewTextBoxColumn Column12;
-        private DataGridViewTextBoxColumn Column13;
-        private DataGridViewTextBoxColumn Column14;
-        private DataGridViewTextBoxColumn Column15;
-        private DataGridViewTextBoxColumn Column16;
-        private DataGridViewTextBoxColumn Column17;
         private GroupBox groupBox1;
         private Button btnNuevoVuelo;
         private Button btnEliminarVuelo;
@@ -690,10 +779,30 @@
         private Button btnCrearVuelo;
         private DateTimePicker dateTimePickerFecha;
         private ComboBox cbAvion;
-        private ComboBox cbOrigen;
-        private ComboBox cbDestino;
-        private Label label7;
+        private ComboBox cbOrigenNacional;
         private Label label9;
         private Label label8;
+        private RadioButton radioButton1;
+        private GroupBox groupBox3;
+        private RadioButton radioButton2;
+        private ComboBox cbOrigenInternacional;
+        private GroupBox groupBox4;
+        private ComboBox cbDestino;
+        private DataGridViewTextBoxColumn Column7;
+        private DataGridViewTextBoxColumn Column8;
+        private DataGridViewTextBoxColumn Column9;
+        private DataGridViewTextBoxColumn Column10;
+        private DataGridViewTextBoxColumn Column11;
+        private DataGridViewTextBoxColumn Column12;
+        private DataGridViewTextBoxColumn Column14;
+        private DataGridViewTextBoxColumn Column15;
+        private DataGridViewTextBoxColumn Column16;
+        private DataGridViewTextBoxColumn Column17;
+        private DataGridViewTextBoxColumn Column13;
+        private DataGridViewTextBoxColumn Column18;
+        private Label label7;
+        private TextBox txtFiltrarMatricula;
+        private Label label10;
+        private TextBox txtFiltrarVuelos;
     }
 }

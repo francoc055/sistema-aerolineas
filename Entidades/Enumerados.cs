@@ -31,6 +31,7 @@ public enum DestinoInternacional
     Miami
 }
 
+
 public enum EquipoDeViaje
 {
     DeMano,

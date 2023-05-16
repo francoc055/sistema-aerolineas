@@ -75,7 +75,7 @@
     "EligeComida": true,
     "EligeInternet": false,
     "TipoClase": 1,
-    "EnVuelo": false,
+    "EnVuelo": true,
     "Nombre": "rocio",
     "Apellido": "pardi",
     "Dni": 48870983,

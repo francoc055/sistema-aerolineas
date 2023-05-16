@@ -87,6 +87,7 @@ namespace Vista
         //----------Listar viajes------------//
         private void CargarDataGridVuelo()
         {
+            dataGridViewInfoVuelos.Rows.Clear();
             foreach (Vuelo v in Sistema.ListaDeVuelos)
             {
                 DataGridViewRow filaVuelo = new DataGridViewRow();
@@ -158,6 +159,8 @@ namespace Vista
             }
         }
 
+
+
         private string DestinoMasElegido()
         {
             Dictionary<string, int> destinosContador = new Dictionary<string, int>();
@@ -212,6 +215,7 @@ namespace Vista
         //----------Vender viaje------------//
         private void CargarDataVenderViaje()
         {
+            dataGridViewPasajerosSinVuelo.Rows.Clear();
             foreach (PreferenciasPasajero item in Sistema.ListaDePasajeros)
             {
                 if (item.EnVuelo == false)
@@ -233,6 +237,8 @@ namespace Vista
 
         private void dataGridViewPasajerosSinVuelo_SelectionChanged(object sender, EventArgs e)
         {
+            int cantAsientosTurista = 0;
+            int cantAsientosPremium = 0;
             if (dataGridViewPasajerosSinVuelo.SelectedRows.Count > 0)
             {
                 dataGridViewVuelosVender.Rows.Clear();
@@ -243,30 +249,25 @@ namespace Vista
                 float valorCeldaPesoEquipaje = (float)row.Cells[5].Value;
                 Clase valorCeldaClase = (Clase)row.Cells[6].Value;
 
+
                 bool flag = false;
                 foreach (Vuelo v in Sistema.ListaDeVuelos)
                 {
                     float diferenciaPeso = v.Avion.CapacidadBodega - valorCeldaPesoEquipaje;
                     if (Clase.Turista.ToString() == valorCeldaClase.ToString())
                     {
-                        v.CantidadAsientoClaseTurista -= 1;
-                        if (v.CantidadAsientoClaseTurista >= 0)
-                        {
-                            v.Avion.CantidadDeAsientos -= 1;
-                        }
+                        cantAsientosTurista = v.CantidadAsientoClaseTurista;
+                        cantAsientosTurista -= 1;
                     }
                     else if (Clase.Premium.ToString() == valorCeldaClase.ToString())
                     {
-                        v.CantidadAsientoClasePremium -= 1;
-                        if (v.CantidadAsientoClasePremium >= 0)
-                        {
-                            v.Avion.CantidadDeAsientos -= 1;
-                        }
+                        cantAsientosPremium = v.CantidadAsientoClasePremium;
+                        cantAsientosPremium -= 1;
                     }
 
                     if (v.Avion.CapacidadBodega > valorCeldaPesoEquipaje && diferenciaPeso >= 0)
                     {
-                        if (valorCeldaInternet == v.Avion.ServicioDeInternet && valorCeldaComida == v.Avion.OfreceComida && v.CantidadAsientoClaseTurista >= 0 && v.CantidadAsientoClasePremium >= 0)
+                        if (valorCeldaInternet == v.Avion.ServicioDeInternet && valorCeldaComida == v.Avion.OfreceComida && (cantAsientosTurista > 0 || cantAsientosPremium > 0))
                         {
                             DataGridViewRow newRow = new DataGridViewRow();
                             newRow.CreateCells(dataGridViewVuelosVender);
@@ -296,23 +297,34 @@ namespace Vista
         //----------------------REFACTORIZAR--------------------------//
         private void btnAgregarVuelo_Click(object sender, EventArgs e)
         {
-            DataGridViewRow rowPasajero = dataGridViewPasajerosSinVuelo.SelectedRows[0];
-            DataGridViewRow rowVuelo = dataGridViewVuelosVender.SelectedRows[0];
-            double numeroDni = (double)rowPasajero.Cells[0].Value;
-            int idDelVuelo = (int)rowVuelo.Cells[6].Value;
 
-            Vuelo vuelo = GetVuelo(idDelVuelo);
-            PreferenciasPasajero pasajero = GetPasajero(numeroDni);
 
             if (dataGridViewPasajerosSinVuelo.SelectedRows.Count > 0 && dataGridViewVuelosVender.SelectedRows.Count > 0)
             {
+                DataGridViewRow rowPasajero = dataGridViewPasajerosSinVuelo.SelectedRows[0];
+                DataGridViewRow rowVuelo = dataGridViewVuelosVender.SelectedRows[0];
+                double numeroDni = (double)rowPasajero.Cells[0].Value;
+                int idDelVuelo = (int)rowVuelo.Cells[6].Value;
+
+                Vuelo vuelo = GetVuelo(idDelVuelo);
+                PreferenciasPasajero pasajero = GetPasajero(numeroDni);
+
                 if (vuelo is not null && pasajero is not null)
                 {
                     vuelo += pasajero;
                     pasajero.EnVuelo = true;
                     MessageBox.Show($"Pasajero agregado al vuelo " +
                         $"{vuelo.ToString()}");
+                    if (pasajero.TipoClase == Clase.Premium)
+                    {
+                        vuelo.CantidadAsientoClasePremium -= 1;
+                    }
+                    else if (pasajero.TipoClase == Clase.Turista)
+                    {
+                        vuelo.CantidadAsientoClaseTurista -= 1;
+                    }
                     dataGridViewPasajerosSinVuelo.Rows.Clear();
+                    CargarDataGridVuelo();
                     CargarDataVenderViaje();
                     CargarDataEstadisticas();
                     Serializador.SerializarPasajeros(Sistema.ListaDePasajeros);

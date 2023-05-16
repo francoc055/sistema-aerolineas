@@ -43,6 +43,7 @@ namespace Entidades
                 }
                 return partida;
             }
+            set => ciudadDePartida = value;
         }
         public string CiudadDestino { get => ciudadDestino; set => ciudadDestino = value; }
         public DateTime FechaDeVuelo { get => fechaDeVuelo; set => fechaDeVuelo = value; }
@@ -74,37 +75,7 @@ namespace Entidades
             }
         }
    
-        //public float PesoValija
-        //{
-        //    get
-        //    {
-        //        float ret = 0;
-        //        float total = pesoValija + this.avion.CapacidadBodega;
-        //        if(pesoValija < total)
-        //        {
-        //            if (this.clase == Clase.Turista)
-        //            {
-        //                if (pesoValija <= 25)
-        //                {
-        //                    ret = pesoValija;
-        //                }
-        //            }
-        //            else if (this.clase == Clase.Premium)
-        //            {
-        //                if (pesoValija <= 42)
-        //                {
-        //                    ret = pesoValija;
-        //                }
-        //            }
-        //        }
-     
-        //        return ret;
-        //    }
-        //    set
-        //    {
-        //        pesoValija = value;
-        //    }
-        //}
+       
         public bool EsDestinoNacional()
         {
             string[] nombresDestinoN = Enum.GetNames(typeof(DestinoNacional));
@@ -160,6 +131,7 @@ namespace Entidades
                 duracionDelVuelo = value;
             }
         }
+
         public decimal CostoTurista
         {
             get
@@ -167,11 +139,11 @@ namespace Entidades
                 decimal costo = 0;
                 if (EsDestinoNacional())
                 {
-                    costo = (decimal)duracionDelVuelo * 50;
+                    costo = (decimal)DuracionDelVuelo * 50;
                 }
                 else if (EsDestinoInternacional())
                 {
-                    costo = (decimal)duracionDelVuelo * 100;
+                    costo = (decimal)DuracionDelVuelo * 100;
                 }
                 return costo;
             }
@@ -197,29 +169,6 @@ namespace Entidades
                 return costo;
             }
         }
-
-
-        //public decimal CostoClase
-        //{
-        //    get
-        //    {
-        //        decimal costo = 0;
-        //        if (clase == Clase.Turista)
-        //        {
-        //            costo = CostoTurista;
-        //        }
-        //        else if (clase == Clase.Premium)
-        //        {
-        //            costo = CostoPremium;
-        //        }
-
-        //        return costo;
-        //    }
-        //    set
-        //    {
-        //        costoClase = value;
-        //    }
-        //}
 
         public int AsientosDisponibles
         {
@@ -249,6 +198,14 @@ namespace Entidades
             }
         }
 
+        public decimal CostoNeto(decimal costo)
+        {
+           
+            decimal impuesto = (costo * 21) / 100;
+            return costo + impuesto;
+            
+        }
+
 
 
         private Vuelo()
@@ -264,11 +221,8 @@ namespace Entidades
             this.avion = avion;
             this.cantidadAsientoClasePremium = CantidadAsientoClasePremium;
             this.cantidadAsientoClaseTurista = CantidadAsientoClaseTurista;
-            //this.clase = clase;
-            //this.pesoValija = pesoValija;
             this.ciudadDePartida = ciudadDePartida;
             this.ciudadDestino = ciudadDestino;
-            //this.costoClase = CostoClase;
             this.duracionDelVuelo = generarDuracionDelVuelo();
             this.costoTurista = CostoTurista;
             this.costoPremium = CostoPremium;
@@ -291,6 +245,8 @@ namespace Entidades
 
             return sb.ToString();
         }
+
+
 
         public static bool operator ==(Vuelo vuelo, PreferenciasPasajero pasajero)
         {

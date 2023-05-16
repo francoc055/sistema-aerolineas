@@ -245,7 +245,6 @@
             // tabPage2
             // 
             tabPage2.Controls.Add(dataGridViewEstadisticas);
-            tabPage2.Size = new Size(984, 453);
             // 
             // tabPage1
             // 
@@ -262,6 +261,7 @@
             tabPage3.Controls.Add(btnAgregarVuelo);
             tabPage3.Controls.Add(tableLayoutPanel7);
             tabPage3.Controls.Add(tableLayoutPanel6);
+            tabPage3.Size = new Size(984, 453);
             // 
             // btnCerrarSesion
             // 
@@ -858,6 +858,7 @@
             // 
             // dataGridViewInfoPasajero
             // 
+            dataGridViewInfoPasajero.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewInfoPasajero.BackgroundColor = Color.Gainsboro;
             dataGridViewInfoPasajero.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dataGridViewInfoPasajero.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
@@ -938,7 +939,7 @@
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
             dataGridViewEstadisticas.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewEstadisticas.RowTemplate.Height = 25;
-            dataGridViewEstadisticas.Size = new Size(978, 240);
+            dataGridViewEstadisticas.Size = new Size(969, 240);
             dataGridViewEstadisticas.TabIndex = 0;
             // 
             // Column32
@@ -973,7 +974,7 @@
             tableLayoutPanel6.RowCount = 1;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel6.Size = new Size(417, 421);
+            tableLayoutPanel6.Size = new Size(417, 447);
             tableLayoutPanel6.TabIndex = 0;
             // 
             // dataGridViewPasajerosSinVuelo
@@ -1006,7 +1007,7 @@
             dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
             dataGridViewPasajerosSinVuelo.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             dataGridViewPasajerosSinVuelo.RowTemplate.Height = 25;
-            dataGridViewPasajerosSinVuelo.Size = new Size(411, 415);
+            dataGridViewPasajerosSinVuelo.Size = new Size(411, 441);
             dataGridViewPasajerosSinVuelo.TabIndex = 0;
             dataGridViewPasajerosSinVuelo.SelectionChanged += dataGridViewPasajerosSinVuelo_SelectionChanged;
             // 
@@ -1057,7 +1058,7 @@
             tableLayoutPanel7.RowCount = 1;
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel7.Size = new Size(552, 218);
+            tableLayoutPanel7.Size = new Size(561, 218);
             tableLayoutPanel7.TabIndex = 1;
             // 
             // dataGridViewVuelosVender
@@ -1089,7 +1090,7 @@
             dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
             dataGridViewVuelosVender.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
             dataGridViewVuelosVender.RowTemplate.Height = 25;
-            dataGridViewVuelosVender.Size = new Size(546, 212);
+            dataGridViewVuelosVender.Size = new Size(555, 212);
             dataGridViewVuelosVender.TabIndex = 0;
             // 
             // Column43
