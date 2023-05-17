@@ -58,46 +58,34 @@ namespace Entidades
 
         public static List<Vuelo> DeserializarVuelos()
         {
-            try
+ 
+            if (File.Exists("simulacionVuelos.Json"))
             {
-                if (File.Exists("simulacionVuelos.Json"))
+                using (StreamReader sr = new StreamReader("simulacionVuelos.Json"))
                 {
-                    using (StreamReader sr = new StreamReader("simulacionVuelos.Json"))
-                    {
-                        string json_str = sr.ReadToEnd();
+                    string json_str = sr.ReadToEnd();
 
-                        List<Vuelo> lista = JsonConvert.DeserializeObject<List<Vuelo>>(json_str);
-                        return lista;
-                    }
+                    List<Vuelo> lista = JsonConvert.DeserializeObject<List<Vuelo>>(json_str);
+                    return lista;
                 }
             }
-            catch (Exception ex)
-            {
-                return null;
-            }
+ 
             return null;
         }
 
 
         public static List<PreferenciasPasajero> DeserializarPasajeros()
         {
-            try
+            if (File.Exists("simulacionPasajeros.Json"))
             {
-                if (File.Exists("simulacionPasajeros.Json"))
+                using (StreamReader sr = new StreamReader("simulacionPasajeros.Json"))
                 {
-                    using (StreamReader sr = new StreamReader("simulacionPasajeros.Json"))
-                    {
-                        string json_str = sr.ReadToEnd();
+                    string json_str = sr.ReadToEnd();
 
-                        //List<PreferenciasPasajero> lista = JsonConvert.DeserializeObject<List<PreferenciasPasajero>>(json_str);
-                        Sistema.ListaDePasajeros = JsonConvert.DeserializeObject<List<PreferenciasPasajero>>(json_str);
-                        return Sistema.ListaDePasajeros;
-                    }
+                    //List<PreferenciasPasajero> lista = JsonConvert.DeserializeObject<List<PreferenciasPasajero>>(json_str);
+                    Sistema.ListaDePasajeros = JsonConvert.DeserializeObject<List<PreferenciasPasajero>>(json_str);
+                    return Sistema.ListaDePasajeros;
                 }
-            }
-            catch (Exception ex)
-            {
-                return null;
             }
             return null;
         }
@@ -113,6 +101,20 @@ namespace Entidades
                     //List<PreferenciasPasajero> lista = JsonConvert.DeserializeObject<List<PreferenciasPasajero>>(json_str);
                     Sistema.ListaDeAeronaves = JsonConvert.DeserializeObject<List<Aeronave>>(json_str);
                     return Sistema.ListaDeAeronaves;
+                }
+            }
+            return null;
+        }
+
+        public static List<Usuarios> DeserializarRegistros()
+        {
+            if (File.Exists("usuarios.log"))
+            {
+                using (StreamReader sr = new StreamReader("usuarios.log"))
+                {
+                    string json_str = sr.ReadToEnd();
+                    List<Usuarios> registro = JsonConvert.DeserializeObject<List<Usuarios>>(json_str);
+                    return registro;
                 }
             }
             return null;

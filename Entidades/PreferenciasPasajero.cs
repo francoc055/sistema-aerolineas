@@ -11,21 +11,22 @@ namespace Entidades
         bool eligeComida;
         bool eligeInternet;
         Clase tipoClase;
-        bool enVuelo;
+        int cantVuelo;
 
         public bool EligeComida { get => eligeComida; set => eligeComida = value; }
         public bool EligeInternet { get =>  eligeInternet; set => eligeInternet = value; }
 
         public Clase TipoClase { get => tipoClase; set => tipoClase = value; }
-        public bool EnVuelo { get => enVuelo; set => enVuelo = value; }
+        
+        public int CantVuelo { get => cantVuelo; set => cantVuelo = value; }
 
-        public PreferenciasPasajero(string nombre, string apellido, double dni, int edad, EquipoDeViaje equipo, float pesoValija, bool eligeComida, bool eligeInternet, Clase tipoClase, bool enVuelo)
+        public PreferenciasPasajero(string nombre, string apellido, double dni, int edad, EquipoDeViaje equipo, float pesoValija, bool eligeComida, bool eligeInternet, Clase tipoClase, int cantVuelo)
             : base(nombre, apellido, dni, edad, equipo, pesoValija)
         {
             this.eligeComida = eligeComida;
             this.eligeInternet = eligeInternet;
             this.tipoClase = tipoClase;
-            this.enVuelo = enVuelo;
+            this.cantVuelo = cantVuelo;
         }
 
         public override string ToString()

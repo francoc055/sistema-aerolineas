@@ -1,0 +1,74 @@
+[
+  {
+    "apellido": "Gorgen",
+    "nombre": "Corey",
+    "legajo": 1,
+    "correo": "cgorgen@vendedor.com",
+    "clave": "123abc45",
+    "perfil": "vendedor",
+    "Acceso": "2023-05-17T04:47:59.0402-03:00"
+  },
+  {
+    "apellido": "Gorgen",
+    "nombre": "Corey",
+    "legajo": 1,
+    "correo": "cgorgen@vendedor.com",
+    "clave": "123abc45",
+    "perfil": "vendedor",
+    "Acceso": "2023-05-17T05:17:00.4798398-03:00"
+  },
+  {
+    "apellido": "Jordan",
+    "nombre": "Michael",
+    "legajo": 5,
+    "correo": "admin@admin.com",
+    "clave": "12345678",
+    "perfil": "administrador",
+    "Acceso": "2023-05-17T05:17:06.2457649-03:00"
+  },
+  {
+    "apellido": "Jordan",
+    "nombre": "Michael",
+    "legajo": 5,
+    "correo": "admin@admin.com",
+    "clave": "12345678",
+    "perfil": "administrador",
+    "Acceso": "2023-05-17T05:17:12.6161528-03:00"
+  },
+  {
+    "apellido": "Gorgen",
+    "nombre": "Corey",
+    "legajo": 1,
+    "correo": "cgorgen@vendedor.com",
+    "clave": "123abc45",
+    "perfil": "vendedor",
+    "Acceso": "2023-05-17T05:32:13.7431844-03:00"
+  },
+  {
+    "apellido": "Gorgen",
+    "nombre": "Corey",
+    "legajo": 1,
+    "correo": "cgorgen@vendedor.com",
+    "clave": "123abc45",
+    "perfil": "vendedor",
+    "Acceso": "2023-05-17T05:36:04.5557214-03:00"
+  },
+  {
+    "apellido": "Gorgen",
+    "nombre": "Corey",
+    "legajo": 1,
+    "correo": "cgorgen@vendedor.com",
+    "clave": "123abc45",
+    "perfil": "vendedor",
+    "Acceso": "2023-05-17T05:38:12.8033287-03:00"
+  },
+  {
+    "apellido": "Jordan",
+    "nombre": "Michael",
+    "legajo": 5,
+    "correo": "admin@admin.com",
+    "clave": "12345678",
+    "perfil": "administrador",
+    "Acceso": "2023-05-17T05:38:24.8287825-03:00"
+  }
+]

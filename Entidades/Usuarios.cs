@@ -16,6 +16,9 @@ namespace Entidades
         public string clave { get; set; }
         public string perfil { get; set; }
         
+        DateTime acceso;
+        public DateTime Acceso { get => acceso; set => acceso = value; }
+
 
         public string Mostrar()
         {

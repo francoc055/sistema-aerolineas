@@ -16,32 +16,26 @@ namespace Vista
 {
     public partial class vistaVendedor : VistaUsuario
     {
-        //List<PreferenciasPasajero> listaPasajeros;
-        //List<Vuelo> listaVuelos;
-        //Login frmLogin;
+
 
         public vistaVendedor()
         {
             InitializeComponent();
-            //listaVuelos = new List<Vuelo>();
-            //listaPasajeros = new List<PreferenciasPasajero>();
-            //frmLogin = new Login();
+
         }
 
 
         private void vistaVendedor_Load_1(object sender, EventArgs e)
         {
-            //listaVuelos = Deserializador.DeserializarVuelos();
-            //Sistema.ListaDeVuelos = Deserializador.DeserializarVuelos();
-            //listaPasajeros = Deserializador.DeserializarPasajeros();
-            //Sistema.ListaDePasajeros = Deserializador.DeserializarPasajeros();
-
+            CargarRegistro();
             CargarNombreOperador();
 
 
             CargarDataGridVuelo();
             CargarDataEstadisticasDestino();
             CargarEstadisticasOrdenFact();
+            cargarDataHorasGcias();
+            CargarDataPasajerosFrecuentes();
             CargarDataVenderViaje();
 
 
@@ -56,6 +50,19 @@ namespace Vista
             btnModificarPasajero.Enabled = false;
             btnEliminarPasajero.Enabled = false;
 
+        }
+
+        private void CargarRegistro()
+        {
+            foreach (Usuarios item in Login.ListaUser)
+            {
+                if (item.correo == Login.CorreoUser)
+                {
+                    item.Acceso = DateTime.Now;
+                    Login.RegistroUsuarios.Add(item);
+                    Serializador.SerializarRegistros(Login.RegistroUsuarios);
+                }
+            }
         }
 
         protected virtual void CargarNombreOperador()
@@ -166,51 +173,28 @@ namespace Vista
         {
             Dictionary<string, int> destinosContador = new Dictionary<string, int>();
 
-            bool flag = false;
             foreach (Vuelo vuelo in Sistema.ListaDeVuelos)
             {
-                if (!flag)
+                if (destinosContador.ContainsKey(vuelo.CiudadDestino))
                 {
-                    destinosContador.Add(vuelo.CiudadDestino, vuelo.ListaPasajeros.Count);
+                    destinosContador[vuelo.CiudadDestino] += vuelo.ListaPasajeros.Count;
                 }
                 else
                 {
-                    foreach (KeyValuePair<string, int> item in destinosContador)
-                    {
-                        if (vuelo.CiudadDestino != item.Key)
-                        {
-                            destinosContador.Add(vuelo.CiudadDestino, vuelo.ListaPasajeros.Count);
-                            break;
-                        }
-                        else if (vuelo.CiudadDestino == item.Key)
-                        {
-                            destinosContador[item.Key] += vuelo.ListaPasajeros.Count;
-                            break;
-                        }
-                    }
+                    destinosContador.Add(vuelo.CiudadDestino, vuelo.ListaPasajeros.Count);
                 }
-
-                flag = true;
             }
 
-            bool flag2 = false;
             string destino = "";
             int mayor = 0;
+
             foreach (KeyValuePair<string, int> item in destinosContador)
             {
-                if (!flag2)
+                if (item.Value > mayor)
                 {
                     mayor = item.Value;
                     destino = item.Key;
                 }
-                else
-                {
-                    if (item.Value > mayor)
-                    {
-                        destino = item.Key;
-                    }
-                }
-                flag2 = true;
             }
 
             return destino;
@@ -237,8 +221,6 @@ namespace Vista
                     filaVueloEstadisticas.CreateCells(dataGridViewOrdFacturacion);
                     filaVueloEstadisticas.Cells[0].Value = item.TotalRecaudado;
                     filaVueloEstadisticas.Cells[1].Value = item.CiudadDestino;
-                    //filaVueloEstadisticas.Cells[2].Value = Vuelo.GananciasCabotaje();
-                    //filaVueloEstadisticas.Cells[3].Value = Vuelo.GananciasInternacional(item);
                     dataGridViewOrdFacturacion.Rows.Add(filaVueloEstadisticas);
                 }
             }
@@ -247,6 +229,178 @@ namespace Vista
         private int Comparacion(Vuelo a, Vuelo b)
         {
             return (int)(a.TotalRecaudado - b.TotalRecaudado);
+        }
+
+
+        private void cargarDataHorasGcias()
+        {
+            foreach (Aeronave avion in Sistema.ListaDeAeronaves)
+            {
+                if (AvionConViajeRealizado(avion.Matricula))
+                {
+                    DataGridViewRow fila = new DataGridViewRow();
+                    fila.CreateCells(dataGridViewHorasGciasTotales);
+                    fila.Cells[0].Value = avion.Matricula;
+                    fila.Cells[1].Value = horasRecaudadasTotales(avion.Matricula);
+                    fila.Cells[2].Value = GananciasCabotaje(avion.Matricula);
+                    fila.Cells[3].Value = GananciasInternacional(avion.Matricula);
+                    dataGridViewHorasGciasTotales.Rows.Add(fila);
+                }
+            }
+        }
+
+        private decimal GananciasCabotaje(string matricula)
+        {
+            decimal ganancias = 0;
+            foreach (Vuelo vuelo in Sistema.ListaDeVuelos)
+            {
+                if (EnVuelo(vuelo))
+                {
+                    if (vuelo.EsDestinoNacional())
+                    {
+                        if (matricula == vuelo.Avion.Matricula)
+                        {
+                            foreach (PreferenciasPasajero pasajero in vuelo.ListaPasajeros)
+                            {
+                                if (pasajero.TipoClase == Clase.Turista)
+                                {
+                                    ganancias += vuelo.CostoTurista;
+                                }
+                                else if (pasajero.TipoClase == Clase.Premium)
+                                {
+                                    ganancias += vuelo.CostoPremium;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return ganancias;
+        }
+
+        private decimal GananciasInternacional(string matricula)
+        {
+            decimal ganancias = 0;
+            foreach (Vuelo vuelo in Sistema.ListaDeVuelos)
+            {
+                if (EnVuelo(vuelo))
+                {
+                    if (vuelo.EsDestinoInternacional())
+                    {
+                        if (matricula == vuelo.Avion.Matricula)
+                        {
+                            foreach (PreferenciasPasajero pasajero in vuelo.ListaPasajeros)
+                            {
+                                if (pasajero.TipoClase == Clase.Turista)
+                                {
+                                    ganancias += vuelo.CostoTurista;
+                                }
+                                else if (pasajero.TipoClase == Clase.Premium)
+                                {
+                                    ganancias += vuelo.CostoPremium;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return ganancias;
+        }
+
+        private float horasRecaudadasTotales(string matricula)
+        {
+            float horasTotales = 0;
+            foreach (Vuelo vuelo in Sistema.ListaDeVuelos)
+            {
+                if (EnVuelo(vuelo))
+                {
+                    if (matricula == vuelo.Avion.Matricula)
+                    {
+                        horasTotales += vuelo.DuracionDelVuelo;
+                    }
+                }
+            }
+
+            return horasTotales;
+        }
+
+        private bool AvionConViajeRealizado(string matricula)
+        {
+            foreach (Vuelo vuelo in Sistema.ListaDeVuelos)
+            {
+                if (EnVuelo(vuelo))
+                {
+                    if (matricula == vuelo.Avion.Matricula)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private bool EnVuelo(Vuelo vuelo)
+        {
+            DateTime fechaActual = DateTime.Now;
+            bool ret = false;
+
+            float horaLlegada = vuelo.FechaDeVuelo.Hour + vuelo.DuracionDelVuelo;
+            float horaSalida = vuelo.FechaDeVuelo.Hour;
+            if (fechaActual.Year == vuelo.FechaDeVuelo.Year && fechaActual.Month == vuelo.FechaDeVuelo.Month && fechaActual.Day == vuelo.FechaDeVuelo.Day)
+            {
+                if (fechaActual.Hour < horaLlegada && fechaActual.Hour > horaSalida)
+                {
+                    ret = true;
+                }
+            }
+            else
+            {
+                if (fechaActual.Year > vuelo.FechaDeVuelo.Year)
+                {
+                    ret = true;
+                }
+                else if (fechaActual.Year == vuelo.FechaDeVuelo.Year && fechaActual.Month > vuelo.FechaDeVuelo.Month)
+                {
+                    ret = true;
+                }
+                else
+                {
+                    ret = false;
+                }
+            }
+
+            return ret;
+        }
+
+        private void CargarDataPasajerosFrecuentes()
+        {
+            List<PreferenciasPasajero> pasajerosF = new List<PreferenciasPasajero>();
+            foreach (PreferenciasPasajero pasajero in Sistema.ListaDePasajeros)
+            {
+                if (pasajero.CantVuelo > 0)
+                {
+                    pasajerosF.Add(pasajero);
+                }
+            }
+
+            if (pasajerosF is not null)
+            {
+                pasajerosF.Sort(ComparacionFrecuencia);
+                foreach (PreferenciasPasajero item in pasajerosF)
+                {
+                    DataGridViewRow fila = new DataGridViewRow();
+                    fila.CreateCells(dataGridViewPasajerosFrecuentes);
+                    fila.Cells[0].Value = item.Nombre;
+                    fila.Cells[1].Value = item.CantVuelo;
+                    dataGridViewPasajerosFrecuentes.Rows.Add(fila);
+                }
+
+            }
+        }
+
+        private int ComparacionFrecuencia(PreferenciasPasajero p1, PreferenciasPasajero p2)
+        {
+            return (int)(p2.CantVuelo - p1.CantVuelo);
         }
         //----------Estadisticas historicas------------//
 
@@ -257,20 +411,16 @@ namespace Vista
             dataGridViewPasajerosSinVuelo.Rows.Clear();
             foreach (PreferenciasPasajero item in Sistema.ListaDePasajeros)
             {
-                if (item.EnVuelo == false)
-                {
-                    DataGridViewRow filaPasajero = new DataGridViewRow();
-                    filaPasajero.CreateCells(dataGridViewPasajerosSinVuelo);
-                    filaPasajero.Cells[0].Value = item.Dni;
-                    filaPasajero.Cells[1].Value = item.Nombre;
-                    filaPasajero.Cells[2].Value = item.EligeInternet;
-                    filaPasajero.Cells[3].Value = item.EligeComida;
-                    filaPasajero.Cells[4].Value = item.Equipo;
-                    filaPasajero.Cells[5].Value = item.PesoValija;
-                    filaPasajero.Cells[6].Value = item.TipoClase;
-                    dataGridViewPasajerosSinVuelo.Rows.Add(filaPasajero);
-                }
-
+                DataGridViewRow filaPasajero = new DataGridViewRow();
+                filaPasajero.CreateCells(dataGridViewPasajerosSinVuelo);
+                filaPasajero.Cells[0].Value = item.Dni;
+                filaPasajero.Cells[1].Value = item.Nombre;
+                filaPasajero.Cells[2].Value = item.EligeInternet;
+                filaPasajero.Cells[3].Value = item.EligeComida;
+                filaPasajero.Cells[4].Value = item.Equipo;
+                filaPasajero.Cells[5].Value = item.PesoValija;
+                filaPasajero.Cells[6].Value = item.TipoClase;
+                dataGridViewPasajerosSinVuelo.Rows.Add(filaPasajero);
             }
         }
 
@@ -289,6 +439,8 @@ namespace Vista
                     bool valorCeldaComida = (bool)row.Cells[3].Value;
                     float valorCeldaPesoEquipaje = (float)row.Cells[5].Value;
                     Clase valorCeldaClase = (Clase)row.Cells[6].Value;
+                    //int valorCeldaId = (int)row.Cells[0].Value;
+
 
 
                     bool flag = false;
@@ -306,7 +458,7 @@ namespace Vista
                             cantAsientosPremium -= 1;
                         }
 
-                        if (v.Avion.CapacidadBodega > valorCeldaPesoEquipaje && diferenciaPeso >= 0)
+                        if (v.Avion.CapacidadBodega > valorCeldaPesoEquipaje && diferenciaPeso >= 0 && !EnVuelo(v))
                         {
                             if (valorCeldaInternet == v.Avion.ServicioDeInternet && valorCeldaComida == v.Avion.OfreceComida && (cantAsientosTurista > 0 || cantAsientosPremium > 0))
                             {
@@ -350,7 +502,7 @@ namespace Vista
                 if (vuelo is not null && pasajero is not null)
                 {
                     vuelo += pasajero;
-                    pasajero.EnVuelo = true;
+                    pasajero.CantVuelo++;
                     MessageBox.Show($"Pasajero agregado al vuelo " +
                         $"{vuelo.ToString()}");
                     if (pasajero.TipoClase == Clase.Premium)
@@ -418,7 +570,7 @@ namespace Vista
                 bool.TryParse(this.cbInternet.SelectedItem.ToString(), out bool eligeInternet);
                 Clase tipoClase = (Clase)this.cbClase.SelectedItem;
 
-                PreferenciasPasajero pasajeroNuevo = new PreferenciasPasajero(nombre, apellido, dni, edad, equipaje, pesoValija, eligeComida, eligeInternet, tipoClase, false);
+                PreferenciasPasajero pasajeroNuevo = new PreferenciasPasajero(nombre, apellido, dni, edad, equipaje, pesoValija, eligeComida, eligeInternet, tipoClase, 0);
 
                 foreach (PreferenciasPasajero item in Sistema.ListaDePasajeros)
                 {
@@ -614,7 +766,7 @@ namespace Vista
                 bool.TryParse(this.cbInternet.SelectedItem.ToString(), out bool eligeInternet);
                 foreach (PreferenciasPasajero item in Sistema.ListaDePasajeros)
                 {
-                    if (item == pasajeroModificado && pasajeroModificado.EnVuelo == false)
+                    if (item == pasajeroModificado)
                     {
                         item.Nombre = txtNombre.Text;
                         item.Apellido = txtApellido.Text;
@@ -632,10 +784,6 @@ namespace Vista
                         CargarDataVenderViaje();
                         break;
                     }
-                }
-                if (pasajeroModificado.EnVuelo)
-                {
-                    MessageBox.Show("Error. No se puede modificar el pasajero");
                 }
             }
             else

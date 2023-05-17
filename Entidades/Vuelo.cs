@@ -206,43 +206,22 @@ namespace Entidades
             
         }
 
-        //public static decimal GananciasCabotaje(List<Vuelo> vuelo)
-        //{
-        //    decimal gananciaTotal = 0;
-        //    foreach (Vuelo item in vuelo)
-        //    {
-        //        if(item.CiudadDePartida == "Buenos Aires")
-        //        {
-                    
-        //        }
-        //    }            
-        //    return gananciaTotal;
-        //}
 
-        //public static decimal GananciasInternacional(Vuelo vuelo)
-        //{
-        //    decimal gananciaTotal = 0;
-        //    foreach (PreferenciasPasajero pasajero in vuelo.listaPasajeros)
-        //    {
-        //        if (pasajero.TipoClase == Clase.Premium)
-        //        {
-        //            gananciaTotal += vuelo.costoPremium;
-        //        }
-        //    }
-        //    return gananciaTotal;
-        //}
-
-
+        public static int GenerarIdVuelo()
+        {
+            Random random = new Random();
+            return random.Next(100, 999);
+        }
 
         private Vuelo()
         {
             listaPasajeros = new List<PreferenciasPasajero>();
         }
 
-        public Vuelo(DateTime fechaDeVuelo, Aeronave avion, string ciudadDePartida, string ciudadDestino)
+        public Vuelo(DateTime fechaDeVuelo, Aeronave avion, string ciudadDePartida, string ciudadDestino, int idVuelo)
         : this()
         {
-            this.idVuelo = ultimoId;
+            this.idVuelo = idVuelo;
             this.fechaDeVuelo = fechaDeVuelo;
             this.avion = avion;
             this.cantidadAsientoClasePremium = CantidadAsientoClasePremium;
@@ -253,8 +232,8 @@ namespace Entidades
             this.costoTurista = CostoTurista;
             this.costoPremium = CostoPremium;
                 
-            ultimoId++;
         }
+
 
 
         public override string ToString()

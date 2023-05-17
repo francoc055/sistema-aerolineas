@@ -125,7 +125,6 @@
             tabPage6.Controls.Add(cbInternet);
             tabPage6.Controls.Add(groupBox2);
             tabPage6.Controls.Add(tableLayoutPanel1);
-            tabPage6.Size = new Size(958, 433);
             // 
             // tabPage5
             // 
@@ -160,12 +159,12 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Controls.Add(dataGridViewAeronave, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Bottom;
-            tableLayoutPanel1.Location = new Point(3, 229);
+            tableLayoutPanel1.Location = new Point(3, 223);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(952, 201);
+            tableLayoutPanel1.Size = new Size(969, 201);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // dataGridViewAeronave
@@ -197,7 +196,7 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dataGridViewAeronave.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewAeronave.RowTemplate.Height = 25;
-            dataGridViewAeronave.Size = new Size(946, 195);
+            dataGridViewAeronave.Size = new Size(963, 195);
             dataGridViewAeronave.TabIndex = 0;
             dataGridViewAeronave.CellContentClick += dataGridViewAeronave_CellContentClick;
             // 
@@ -460,7 +459,7 @@
             // 
             // Column9
             // 
-            Column9.HeaderText = "Partida";
+            Column9.HeaderText = "Destino";
             Column9.Name = "Column9";
             // 
             // Column10
@@ -788,6 +787,10 @@
         private ComboBox cbOrigenInternacional;
         private GroupBox groupBox4;
         private ComboBox cbDestino;
+        private Label label7;
+        private TextBox txtFiltrarMatricula;
+        private Label label10;
+        private TextBox txtFiltrarVuelos;
         private DataGridViewTextBoxColumn Column7;
         private DataGridViewTextBoxColumn Column8;
         private DataGridViewTextBoxColumn Column9;
@@ -800,9 +803,5 @@
         private DataGridViewTextBoxColumn Column17;
         private DataGridViewTextBoxColumn Column13;
         private DataGridViewTextBoxColumn Column18;
-        private Label label7;
-        private TextBox txtFiltrarMatricula;
-        private Label label10;
-        private TextBox txtFiltrarVuelos;
     }
 }

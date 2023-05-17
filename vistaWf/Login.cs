@@ -7,19 +7,32 @@ namespace vistaWf
     {
         static List<Usuarios> listaUser;
         static string correoUser;
+        static List<Usuarios> registroUsuarios;
 
         static public List<Usuarios> ListaUser { get => listaUser; }
         static public string CorreoUser { get => correoUser; }
+        public static List<Usuarios> RegistroUsuarios { get => registroUsuarios; set => registroUsuarios = value; }
 
         public Login()
         {
             InitializeComponent();
             listaUser = new List<Usuarios>();
+            registroUsuarios = new List<Usuarios>();
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
             listaUser = Deserializador.DeserializarUsuarios();
+            if (!File.Exists("usuarios.log"))
+            {
+                Serializador.SerializarRegistros(registroUsuarios);
+                registroUsuarios = Deserializador.DeserializarRegistros();
+            }
+            else
+            {
+                registroUsuarios = Deserializador.DeserializarRegistros();
+            }
+
             if (!File.Exists("simulacionPasajeros.json"))
             {
                 Serializador.SerializarPasajeros(Sistema.PasajerosHardcodeados());

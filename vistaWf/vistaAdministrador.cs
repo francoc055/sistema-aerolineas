@@ -33,7 +33,7 @@ namespace Vista
 
         private void vistaAdministrador_Load(object sender, EventArgs e)
         {
-            //labelCambiar.Text = "Administrador";
+            CargarRegistro();
             CargarNombreOperador();
             tabControl1.SelectedTab = tabPage5;
 
@@ -63,6 +63,19 @@ namespace Vista
 
             //dateTimePickerFecha.MinDate = DateTime.Now;
 
+        }
+
+        private void CargarRegistro()
+        {
+            foreach (Usuarios item in Login.ListaUser)
+            {
+                if (item.correo == Login.CorreoUser)
+                {
+                    item.Acceso = DateTime.Now;
+                    Login.RegistroUsuarios.Add(item);
+                    Serializador.SerializarRegistros(Login.RegistroUsuarios);
+                }
+            }
         }
         //---------------CRUD aeronave---------------//
         //cargo nombre y apellido del operador
@@ -115,6 +128,7 @@ namespace Vista
                         Sistema.ListaDeAeronaves.Add(aeronaveNueva);
                         cargarDataAeronave();
                         Clear();
+                        Serializador.SerializarAeronaves(Sistema.ListaDeAeronaves);
                     }
                     else
                     {
@@ -212,6 +226,8 @@ namespace Vista
                     dataGridViewAeronave.Rows.Clear();
                     cargarDataAeronave();
                     Clear();
+                    Serializador.SerializarAeronaves(Sistema.ListaDeAeronaves);
+
                 }
             }
 
@@ -254,11 +270,23 @@ namespace Vista
                             break;
                         }
                     }
-                    else if (vuelo.FechaDeVuelo.Year < fechaActual.Year || vuelo.FechaDeVuelo.Month < fechaActual.Month || vuelo.FechaDeVuelo.Day < fechaActual.Day)
+                    else
                     {
-                        MessageBox.Show("Error. el avion ya habia realizado viajes");
-                        flag = false;
-                        break;
+                        if (fechaActual.Year > vuelo.FechaDeVuelo.Year)
+                        {
+                            flag = false;
+                            break;
+                        }
+                        else if (fechaActual.Year == vuelo.FechaDeVuelo.Year && fechaActual.Month > vuelo.FechaDeVuelo.Month)
+                        {
+                            flag = false;
+                            break;
+                        }
+                        else
+                        {
+                            flag = false;
+                            break;
+                        }
                     }
                 }
             }
@@ -268,7 +296,12 @@ namespace Vista
                 dataGridViewAeronave.Rows.Clear();
                 cargarDataAeronave();
                 Clear();
+                Serializador.SerializarAeronaves(Sistema.ListaDeAeronaves);
             }
+            else
+            {
+                MessageBox.Show("Error. el avion ya habia realizado viajes");
+            }    
         }
         //---------------CRUD aeronave---------------//
 
@@ -339,7 +372,9 @@ namespace Vista
 
             DateTime fechaVuelo = dateTimePickerFecha.Value;
 
-            Vuelo vueloNuevo = new Vuelo(fechaVuelo, avion, ciudadDestino, ciudadPartida);
+            int idVuelo = Vuelo.GenerarIdVuelo();
+
+            Vuelo vueloNuevo = new Vuelo(fechaVuelo, avion, ciudadPartida, ciudadDestino, idVuelo);
 
             if (!string.IsNullOrEmpty(ciudadPartida) && !string.IsNullOrEmpty(ciudadDestino) && avion is not null)
             {
@@ -349,6 +384,7 @@ namespace Vista
                     dataGridViewVuelos.Rows.Clear();
                     CargarDataVuelos();
                     ClearVuelos();
+                    Serializador.SerializarVuelos(Sistema.ListaDeVuelos);
                 }
                 else
                 {
@@ -462,6 +498,8 @@ namespace Vista
                     dataGridViewVuelos.Rows.Clear();
                     CargarDataVuelos();
                     ClearVuelos();
+                    Serializador.SerializarVuelos(Sistema.ListaDeVuelos);
+
                 }
             }
 
@@ -499,11 +537,24 @@ namespace Vista
                     flag = false;
                 }
             }
-            else if (fechaActual.Year > vueloEliminar.FechaDeVuelo.Year || fechaActual.Month > vueloEliminar.FechaDeVuelo.Month || fechaActual.Day > vueloEliminar.FechaDeVuelo.Day)
+            else
             {
-                MessageBox.Show("Error. el vuelo ya existia");
-                flag = false;
+                if (fechaActual.Year > vueloEliminar.FechaDeVuelo.Year)
+                {
+                    flag = false;
+
+                }
+                else if (fechaActual.Year == vueloEliminar.FechaDeVuelo.Year && fechaActual.Month > vueloEliminar.FechaDeVuelo.Month)
+                {
+                    flag = false;
+
+                }
+                else
+                {
+                    flag = true;
+                }
             }
+
 
             if (flag)
             {
@@ -511,6 +562,12 @@ namespace Vista
                 dataGridViewVuelos.Rows.Clear();
                 CargarDataVuelos();
                 ClearVuelos();
+                Serializador.SerializarVuelos(Sistema.ListaDeVuelos);
+
+            }
+            else
+            {
+                MessageBox.Show("Error. el vuelo ya existia");
             }
         }
 
@@ -562,14 +619,14 @@ namespace Vista
 
         private void txtFiltrarVuelos_TextChanged(object sender, EventArgs e)
         {
-            if(int.TryParse(txtFiltrarVuelos.Text.Trim(), out int filtroID))
+            if (int.TryParse(txtFiltrarVuelos.Text.Trim(), out int filtroID))
             {
                 if (filtroID.ToString().Length == 1)
                 {
                     foreach (DataGridViewRow fila in dataGridViewVuelos.Rows)
                     {
                         fila.Selected = false;
-                        if(fila.Cells[0].Value != null)
+                        if (fila.Cells[0].Value != null)
                         {
                             if (int.TryParse(fila.Cells[0].Value.ToString(), out int valor))
                             {
@@ -604,11 +661,11 @@ namespace Vista
                                 }
                             }
                         }
-                        
+
                     }
                 }
             }
-            else if(filtroID == 0)
+            else if (filtroID == 0)
             {
                 dataGridViewVuelos.Rows.Clear();
                 CargarDataVuelos();
