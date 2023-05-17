@@ -118,7 +118,7 @@ namespace Entidades
 
             return ret;
         }
-
+           
         public float DuracionDelVuelo
         {
 

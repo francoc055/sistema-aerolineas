@@ -54,8 +54,7 @@ namespace Entidades
 
         public static List<Vuelo> VuelosHardcodeados()
         {
-            //List<Aeronave> aviones = AeronavesHardcodeados();
-            //List<PreferenciasPasajero> pasajeros = PasajerosHardcodeados();
+
 
             ListaDeVuelos.Add(new Vuelo(new DateTime(2023, 4, 30, 14, 5, 24), ListaDeAeronaves[0], DestinoNacional.Iguazu.ToString(), DestinoNacional.Salta.ToString()));
             ListaDeVuelos.Add(new Vuelo(new DateTime(2023, 5, 30, 8, 30, 45), ListaDeAeronaves[0], DestinoNacional.Tucuman.ToString(), DestinoNacional.Neuquen.ToString()));

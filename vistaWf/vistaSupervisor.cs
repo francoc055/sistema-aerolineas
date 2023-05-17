@@ -21,7 +21,7 @@ namespace Vista
 
         private void vistaSupervisor_Load(object sender, EventArgs e)
         {
-            //labelCambiar.Text = "Supervisor";
+            //labelCambiar.Text = "Supervisor"; 
             base.CargarNombreOperador();
 
             tabControl1.SelectedTab = tabPage2;
