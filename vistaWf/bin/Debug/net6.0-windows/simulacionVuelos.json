@@ -213,5 +213,40 @@
     "CostoPremium": 198.53174250,
     "AsientosDisponibles": 350,
     "TotalRecaudado": 0
+  },
+  {
+    "IdVuelo": 868,
+    "CiudadDePartida": "Corrientes",
+    "CiudadDestino": "Mendoza",
+    "FechaDeVuelo": "2023-08-09T17:45:52",
+    "Avion": {
+      "Matricula": "FF0EE3GA",
+      "CantidadDeAsientos": 450,
+      "CantidadDeBanios": 2,
+      "ServicioDeInternet": true,
+      "OfreceComida": true,
+      "CapacidadBodega": 3000
+    },
+    "ListaPasajeros": [
+      {
+        "EligeComida": true,
+        "EligeInternet": true,
+        "TipoClase": 1,
+        "CantVuelo": 1,
+        "Nombre": "marco",
+        "Apellido": "miller",
+        "Dni": 31870983,
+        "Edad": 35,
+        "Equipo": 0,
+        "PesoValija": 0
+      }
+    ],
+    "CantidadAsientoClasePremium": 90,
+    "CantidadAsientoClaseTurista": 360,
+    "DuracionDelVuelo": 2.7995734,
+    "CostoTurista": 139.978650,
+    "CostoPremium": 188.97117750,
+    "AsientosDisponibles": 449,
+    "TotalRecaudado": 139.978650
   }
 ]

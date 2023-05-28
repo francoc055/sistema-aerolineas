@@ -85,7 +85,7 @@ namespace Vista
             {
                 if (item.correo == Login.CorreoUser)
                 {
-                    labelCambiar.Text = $"Administrador {item.nombre} {item.apellido}";
+                    labelCambiar.Text = $"Administrador {item.nombre} {item.apellido} - {DateTime.Now.Date}";
                     break;
                 }
             }
@@ -129,6 +129,7 @@ namespace Vista
                         cargarDataAeronave();
                         Clear();
                         Serializador.SerializarAeronaves(Sistema.ListaDeAeronaves);
+                        break;
                     }
                     else
                     {
@@ -621,7 +622,7 @@ namespace Vista
         {
             if (int.TryParse(txtFiltrarVuelos.Text.Trim(), out int filtroID))
             {
-                if (filtroID.ToString().Length == 1)
+                if (filtroID.ToString().Length == 3)
                 {
                     foreach (DataGridViewRow fila in dataGridViewVuelos.Rows)
                     {

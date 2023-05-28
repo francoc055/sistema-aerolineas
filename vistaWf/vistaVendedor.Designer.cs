@@ -183,24 +183,24 @@
             label11 = new Label();
             numericUpDownEdad = new NumericUpDown();
             dataGridViewHorasGciasTotales = new DataGridView();
-            Column60 = new DataGridViewTextBoxColumn();
-            Column59 = new DataGridViewTextBoxColumn();
-            Column58 = new DataGridViewTextBoxColumn();
             Column52 = new DataGridViewTextBoxColumn();
+            Column58 = new DataGridViewTextBoxColumn();
+            Column59 = new DataGridViewTextBoxColumn();
+            Column60 = new DataGridViewTextBoxColumn();
             label12 = new Label();
             label13 = new Label();
             dataGridViewOrdFacturacion = new DataGridView();
-            Column34 = new DataGridViewTextBoxColumn();
             Column32 = new DataGridViewTextBoxColumn();
+            Column34 = new DataGridViewTextBoxColumn();
             dataGridViewEstadisticas = new DataGridView();
-            Column35 = new DataGridViewTextBoxColumn();
             Column33 = new DataGridViewTextBoxColumn();
+            Column35 = new DataGridViewTextBoxColumn();
             dataGridViewPasajerosFrecuentes = new DataGridView();
-            Column62 = new DataGridViewTextBoxColumn();
             Column61 = new DataGridViewTextBoxColumn();
+            Column62 = new DataGridViewTextBoxColumn();
             tableLayoutPanel9 = new TableLayoutPanel();
-            label14 = new Label();
             label15 = new Label();
+            label14 = new Label();
             panel1.SuspendLayout();
             tabPage4.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -265,12 +265,10 @@
             tabPage4.Controls.Add(txtNombre);
             tabPage4.Controls.Add(groupBox1);
             tabPage4.Controls.Add(dataGridViewCrudPasajero);
-            tabPage4.Size = new Size(984, 453);
             // 
             // tabPage2
             // 
             tabPage2.Controls.Add(tableLayoutPanel9);
-            tabPage2.Size = new Size(984, 453);
             // 
             // tabPage1
             // 
@@ -832,6 +830,7 @@
             dataGridViewInfoVuelos.EnableHeadersVisualStyles = false;
             dataGridViewInfoVuelos.Location = new Point(3, 3);
             dataGridViewInfoVuelos.Name = "dataGridViewInfoVuelos";
+            dataGridViewInfoVuelos.ReadOnly = true;
             dataGridViewInfoVuelos.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle12.BackColor = Color.RoyalBlue;
@@ -850,36 +849,43 @@
             // 
             Column19.HeaderText = "Avion al que pertenece";
             Column19.Name = "Column19";
+            Column19.ReadOnly = true;
             // 
             // Column20
             // 
             Column20.HeaderText = "Origen";
             Column20.Name = "Column20";
+            Column20.ReadOnly = true;
             // 
             // Column21
             // 
             Column21.HeaderText = "Destino";
             Column21.Name = "Column21";
+            Column21.ReadOnly = true;
             // 
             // Column22
             // 
             Column22.HeaderText = "Fecha de vuelo";
             Column22.Name = "Column22";
+            Column22.ReadOnly = true;
             // 
             // Column26
             // 
             Column26.HeaderText = "Costo turista";
             Column26.Name = "Column26";
+            Column26.ReadOnly = true;
             // 
             // Column27
             // 
             Column27.HeaderText = "Costo premium";
             Column27.Name = "Column27";
+            Column27.ReadOnly = true;
             // 
             // Column25
             // 
             Column25.HeaderText = "Id del vuelo";
             Column25.Name = "Column25";
+            Column25.ReadOnly = true;
             // 
             // dataGridViewInfoPasajero
             // 
@@ -1138,7 +1144,7 @@
             dataGridViewCrudPasajero.Columns.AddRange(new DataGridViewColumn[] { Nombre, Column53, Column54, Column55, Column56, Column57 });
             dataGridViewCrudPasajero.Dock = DockStyle.Bottom;
             dataGridViewCrudPasajero.EnableHeadersVisualStyles = false;
-            dataGridViewCrudPasajero.Location = new Point(3, 224);
+            dataGridViewCrudPasajero.Location = new Point(3, 198);
             dataGridViewCrudPasajero.Name = "dataGridViewCrudPasajero";
             dataGridViewCrudPasajero.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -1150,7 +1156,7 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dataGridViewCrudPasajero.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewCrudPasajero.RowTemplate.Height = 25;
-            dataGridViewCrudPasajero.Size = new Size(978, 226);
+            dataGridViewCrudPasajero.Size = new Size(969, 226);
             dataGridViewCrudPasajero.TabIndex = 0;
             dataGridViewCrudPasajero.CellContentClick += dataGridViewCrudPasajero_CellContentClick;
             // 
@@ -1452,7 +1458,7 @@
             dataGridViewHorasGciasTotales.Columns.AddRange(new DataGridViewColumn[] { Column52, Column58, Column59, Column60 });
             dataGridViewHorasGciasTotales.Dock = DockStyle.Top;
             dataGridViewHorasGciasTotales.EnableHeadersVisualStyles = false;
-            dataGridViewHorasGciasTotales.Location = new Point(481, 261);
+            dataGridViewHorasGciasTotales.Location = new Point(477, 261);
             dataGridViewHorasGciasTotales.Name = "dataGridViewHorasGciasTotales";
             dataGridViewHorasGciasTotales.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -1463,28 +1469,28 @@
             dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
             dataGridViewHorasGciasTotales.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            dataGridViewHorasGciasTotales.Size = new Size(494, 162);
+            dataGridViewHorasGciasTotales.Size = new Size(489, 162);
             dataGridViewHorasGciasTotales.TabIndex = 3;
             // 
-            // Column60
+            // Column52
             // 
-            Column60.HeaderText = "Ganancias internacionales";
-            Column60.Name = "Column60";
-            // 
-            // Column59
-            // 
-            Column59.HeaderText = "Ganancias cabotaje";
-            Column59.Name = "Column59";
+            Column52.HeaderText = "Matricula";
+            Column52.Name = "Column52";
             // 
             // Column58
             // 
             Column58.HeaderText = "Horas";
             Column58.Name = "Column58";
             // 
-            // Column52
+            // Column59
             // 
-            Column52.HeaderText = "Matricula";
-            Column52.Name = "Column52";
+            Column59.HeaderText = "Ganancias cabotaje";
+            Column59.Name = "Column59";
+            // 
+            // Column60
+            // 
+            Column60.HeaderText = "Ganancias internacionales";
+            Column60.Name = "Column60";
             // 
             // label12
             // 
@@ -1500,7 +1506,7 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label13.Location = new Point(481, 0);
+            label13.Location = new Point(477, 0);
             label13.Name = "label13";
             label13.Size = new Size(173, 19);
             label13.TabIndex = 2;
@@ -1524,7 +1530,7 @@
             dataGridViewOrdFacturacion.Columns.AddRange(new DataGridViewColumn[] { Column32, Column34 });
             dataGridViewOrdFacturacion.Dock = DockStyle.Fill;
             dataGridViewOrdFacturacion.EnableHeadersVisualStyles = false;
-            dataGridViewOrdFacturacion.Location = new Point(481, 22);
+            dataGridViewOrdFacturacion.Location = new Point(477, 22);
             dataGridViewOrdFacturacion.Name = "dataGridViewOrdFacturacion";
             dataGridViewOrdFacturacion.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -1536,18 +1542,18 @@
             dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
             dataGridViewOrdFacturacion.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dataGridViewOrdFacturacion.RowTemplate.Height = 25;
-            dataGridViewOrdFacturacion.Size = new Size(494, 212);
+            dataGridViewOrdFacturacion.Size = new Size(489, 212);
             dataGridViewOrdFacturacion.TabIndex = 0;
-            // 
-            // Column34
-            // 
-            Column34.HeaderText = "Destino";
-            Column34.Name = "Column34";
             // 
             // Column32
             // 
             Column32.HeaderText = "Recaudacion";
             Column32.Name = "Column32";
+            // 
+            // Column34
+            // 
+            Column34.HeaderText = "Destino";
+            Column34.Name = "Column34";
             // 
             // dataGridViewEstadisticas
             // 
@@ -1579,18 +1585,18 @@
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
             dataGridViewEstadisticas.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dataGridViewEstadisticas.RowTemplate.Height = 25;
-            dataGridViewEstadisticas.Size = new Size(472, 212);
+            dataGridViewEstadisticas.Size = new Size(468, 212);
             dataGridViewEstadisticas.TabIndex = 0;
-            // 
-            // Column35
-            // 
-            Column35.HeaderText = "Destino mas elegido";
-            Column35.Name = "Column35";
             // 
             // Column33
             // 
             Column33.HeaderText = "Recaudacion";
             Column33.Name = "Column33";
+            // 
+            // Column35
+            // 
+            Column35.HeaderText = "Destino mas elegido";
+            Column35.Name = "Column35";
             // 
             // dataGridViewPasajerosFrecuentes
             // 
@@ -1621,18 +1627,18 @@
             dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
             dataGridViewPasajerosFrecuentes.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewPasajerosFrecuentes.Size = new Size(472, 162);
+            dataGridViewPasajerosFrecuentes.Size = new Size(468, 162);
             dataGridViewPasajerosFrecuentes.TabIndex = 4;
-            // 
-            // Column62
-            // 
-            Column62.HeaderText = "Frencuencia";
-            Column62.Name = "Column62";
             // 
             // Column61
             // 
             Column61.HeaderText = "Nombre";
             Column61.Name = "Column61";
+            // 
+            // Column62
+            // 
+            Column62.HeaderText = "Frencuencia";
+            Column62.Name = "Column62";
             // 
             // tableLayoutPanel9
             // 
@@ -1656,8 +1662,18 @@
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 21F));
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 183F));
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel9.Size = new Size(978, 442);
+            tableLayoutPanel9.Size = new Size(969, 442);
             tableLayoutPanel9.TabIndex = 2;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label15.Location = new Point(477, 237);
+            label15.Name = "label15";
+            label15.Size = new Size(133, 19);
+            label15.TabIndex = 6;
+            label15.Text = "Pasajeros frecuentes";
             // 
             // label14
             // 
@@ -1668,16 +1684,6 @@
             label14.Size = new Size(165, 19);
             label14.TabIndex = 5;
             label14.Text = "Horas y ganancias totales";
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label15.Location = new Point(481, 237);
-            label15.Name = "label15";
-            label15.Size = new Size(133, 19);
-            label15.TabIndex = 6;
-            label15.Text = "Pasajeros frecuentes";
             // 
             // vistaVendedor
             // 

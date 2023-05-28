@@ -22,5 +22,13 @@
     "ServicioDeInternet": true,
     "OfreceComida": false,
     "CapacidadBodega": 5000
+  },
+  {
+    "Matricula": "FF0EE3GA",
+    "CantidadDeAsientos": 450,
+    "CantidadDeBanios": 2,
+    "ServicioDeInternet": true,
+    "OfreceComida": true,
+    "CapacidadBodega": 3000
   }
 ]

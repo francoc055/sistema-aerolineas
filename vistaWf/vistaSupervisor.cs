@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using vistaWf;
 
 namespace Vista
 {
@@ -19,6 +20,8 @@ namespace Vista
         }
         private void vistaSupervisor_Load(object sender, EventArgs e)
         {
+            CargarRegistro();
+            CargarNombreOperador();
             tabControl1.SelectedTab = tabPage2;
 
             CargarDataEstadisticasDestino();
@@ -35,6 +38,31 @@ namespace Vista
 
             btnModificarPasajero.Enabled = false;
             btnEliminarPasajero.Enabled = false;
+        }
+
+        private void CargarRegistro()
+        {
+            foreach (Usuarios item in Login.ListaUser)
+            {
+                if (item.correo == Login.CorreoUser)
+                {
+                    item.Acceso = DateTime.Now;
+                    Login.RegistroUsuarios.Add(item);
+                    Serializador.SerializarRegistros(Login.RegistroUsuarios);
+                }
+            }
+        }
+
+        private void CargarNombreOperador()
+        {
+            foreach (Usuarios item in Login.ListaUser)
+            {
+                if (item.correo == Login.CorreoUser)
+                {
+                    labelCambiar.Text = $"{item.perfil} {item.nombre} {item.apellido} - {DateTime.Now.Date}";
+                    break;
+                }
+            }
         }
 
         private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)

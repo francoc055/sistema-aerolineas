@@ -125,7 +125,7 @@
             Controls.Add(txtUser);
             Name = "Login";
             Text = "Form1";
-            FormClosing += Login_FormClosing;
+            FormClosed += Login_FormClosed;
             Load += Login_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

@@ -75,10 +75,10 @@
             // labelCambiar
             // 
             labelCambiar.AutoSize = true;
-            labelCambiar.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            labelCambiar.Location = new Point(190, 22);
+            labelCambiar.Font = new Font("Times New Roman", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            labelCambiar.Location = new Point(190, 21);
             labelCambiar.Name = "labelCambiar";
-            labelCambiar.Size = new Size(65, 19);
+            labelCambiar.Size = new Size(73, 20);
             labelCambiar.TabIndex = 2;
             labelCambiar.Text = "operador";
             // 
@@ -185,6 +185,7 @@
             Controls.Add(panel1);
             Name = "VistaUsuario";
             Text = "VistaUsuario";
+            FormClosed += VistaUsuario_FormClosed;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

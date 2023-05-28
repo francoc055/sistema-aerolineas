@@ -63,7 +63,7 @@ namespace vistaWf
                 Sistema.ListaDeVuelos = Deserializador.DeserializarVuelos();
             }
 
-            
+
         }
 
 
@@ -92,7 +92,7 @@ namespace vistaWf
                             this.Hide();
                             //this.Close();
                         }
-                        else if(item.perfil == "administrador")
+                        else if (item.perfil == "administrador")
                         {
                             correoUser = item.correo;
                             vistaAdministrador administrador = new vistaAdministrador();
@@ -123,7 +123,7 @@ namespace vistaWf
             txtContra.Text = "12345678";
         }
 
-        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        private void Login_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }

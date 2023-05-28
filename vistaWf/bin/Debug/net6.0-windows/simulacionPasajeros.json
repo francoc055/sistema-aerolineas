@@ -99,7 +99,7 @@
     "EligeComida": true,
     "EligeInternet": true,
     "TipoClase": 1,
-    "CantVuelo": 0,
+    "CantVuelo": 1,
     "Nombre": "marco",
     "Apellido": "miller",
     "Dni": 31870983,

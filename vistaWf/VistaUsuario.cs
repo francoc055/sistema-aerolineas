@@ -25,9 +25,20 @@ namespace Vista
 
         protected virtual void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            Login frmLogin = new Login();
-            frmLogin.Show();
-            this.Close();
+            CerrarSesion cs = new CerrarSesion();
+            if (cs.ShowDialog() == DialogResult.OK)
+            {
+                Login frmLogin = new Login();
+                frmLogin.Show();
+                //this.Close();
+                this.Hide();
+            }
+
+        }
+
+        private void VistaUsuario_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
